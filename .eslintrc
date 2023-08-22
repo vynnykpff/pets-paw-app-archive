@@ -77,7 +77,8 @@
       {
         "format": [
           "UPPER_CASE",
-          "PascalCase"
+          "PascalCase",
+          "camelCase"
         ],
         "selector": "enum"
       },
@@ -105,7 +106,15 @@
         ],
         "selector": [
           "class",
-          "interface",
+          "interface"
+        ]
+      },
+      {
+        "format": [
+          "PascalCase",
+          "camelCase"
+        ],
+        "selector": [
           "enumMember"
         ]
       }
