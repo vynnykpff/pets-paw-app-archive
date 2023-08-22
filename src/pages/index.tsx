@@ -1,6 +1,10 @@
-import BasicLayoutPage from "@/components/ui/BasicLayoutPage/BasicLayoutPage";
+import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import Head from "next/head";
+import Image from "next/image";
 import { FC } from "react";
+import styles from "@/styles/home.module.scss";
+
+import homeScreenImage from "@/assets/images/homeScreen.png";
 
 const Home: FC = () => {
 	return (
@@ -8,7 +12,11 @@ const Home: FC = () => {
 			<Head>
 				<title>Home - PetsPaw</title>
 			</Head>
-			<BasicLayoutPage>Home page</BasicLayoutPage>
+			<LayoutPage>
+				<div className={styles.homeScreen}>
+					<Image priority={true} className={styles.homeImage} src={homeScreenImage} alt="" />
+				</div>
+			</LayoutPage>
 		</>
 	);
 };

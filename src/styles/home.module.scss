@@ -1,0 +1,19 @@
+.homeScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color-200);
+  height: calc(100vh - 60px);
+  border-radius: 20px;
+  position: relative;
+
+  .homeImage {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-60%, -50%);;
+    max-width: 50vw;
+    height: 100vh;
+    z-index: 5;
+  }
+}
