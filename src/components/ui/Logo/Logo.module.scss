@@ -1,0 +1,13 @@
+@import "@/styles/functions";
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+
+  .logoTitle {
+    font-size: em(20px);
+    font-weight: 600;
+  }
+}

@@ -1,13 +1,15 @@
+import BasicLayoutPage from "@/components/ui/BasicLayoutPage/BasicLayoutPage";
 import Head from "next/head";
+import { FC } from "react";
 
-const Breeds = () => {
+const Breeds: FC = () => {
 	return (
 		<>
 			<Head>
-				<title>Breeds</title>
+				<title>Breeds - PetsPaw</title>
 			</Head>
 
-			<div>Breeds Page</div>
+			<BasicLayoutPage>Breeds Page</BasicLayoutPage>
 		</>
 	);
 };

@@ -1,12 +1,14 @@
+import BasicLayoutPage from "@/components/ui/BasicLayoutPage/BasicLayoutPage";
 import Head from "next/head";
+import { FC } from "react";
 
-const Home = () => {
+const Home: FC = () => {
 	return (
 		<>
 			<Head>
-				<title>test</title>
+				<title>Home - PetsPaw</title>
 			</Head>
-			<div>Home page</div>
+			<BasicLayoutPage>Home page</BasicLayoutPage>
 		</>
 	);
 };
