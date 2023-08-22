@@ -6,12 +6,13 @@ import LayoutHeader from "@/components/ui/Layout/components/LayoutHeader/LayoutH
 
 import { ROUTES } from "@/constants/routes";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 
 import styles from "./InitialSelectActions.module.scss";
 
-interface CardItem {
+interface ICardItem {
 	name: string;
 	route: string;
 	imageUrl: StaticImageData;
@@ -22,7 +23,7 @@ interface CardItem {
 const InitialSelectActions: FC = () => {
 	const router = useRouter();
 
-	const data: CardItem[] = [
+	const data: ICardItem[] = [
 		{ name: "VOTING", route: ROUTES.voting, imageUrl: votingImage, description: "voting image", bgColor: "#B4B7FF" },
 		{ name: "BREEDS", route: ROUTES.breeds, imageUrl: breedsImage, description: "breeds image", bgColor: "#97EAB9" },
 		{ name: "GALLERY", route: ROUTES.gallery, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
@@ -33,10 +34,10 @@ const InitialSelectActions: FC = () => {
 	};
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.container}>
 			<LayoutHeader />
 			<section className={styles.layoutContent}>
-				<div className={styles.greetingWrapper}>
+				<div className={styles.greetingContainer}>
 					<h1 className={styles.greetingTitle}>Hi!</h1>
 					<HiIcon />
 				</div>
@@ -49,18 +50,16 @@ const InitialSelectActions: FC = () => {
 								<div className={styles.cardImageContainer} style={{ backgroundColor: card.bgColor }}>
 									<Image priority={true} src={card.imageUrl} alt={card.description} />
 								</div>
-								<button
+								<Link
+									href={card.route}
 									style={{
 										background: getRouterPath(card.route) ? "var(--primary-color)" : "var(--secondary-color)",
 										color: getRouterPath(card.route) ? "#FFF" : "var(--primary-color)",
 									}}
 									className={styles.cardButton}
-									onClick={() => {
-										router.push(card.route);
-									}}
 								>
 									{card.name}
-								</button>
+								</Link>
 							</div>
 						))}
 					</div>

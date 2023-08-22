@@ -1,4 +1,4 @@
-.wrapper {
+.container {
   width: 50%;
   padding-left: calc(20px + (147 - 20) * ((100vw - 375px) / (1250 - 375)));
   height: 100%;
@@ -10,7 +10,7 @@
   margin-top: 80px;
 }
 
-.greetingWrapper {
+.greetingContainer {
   display: flex;
   align-items: center;
   column-gap: 2px;
@@ -53,6 +53,8 @@
   }
 
   .cardButton {
+    display: flex;
+    justify-content: center;
     border-radius: 10px;
     background: var();
     border: none;

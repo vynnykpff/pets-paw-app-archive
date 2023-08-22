@@ -1,0 +1,12 @@
+.headerContainer {
+  display: flex;
+  width: 100%;
+  column-gap: 10px;
+
+  .navItemsContainer {
+    display: flex;
+    column-gap: 10px;
+    min-width: 20%;
+  }
+
+}

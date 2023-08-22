@@ -21,11 +21,11 @@
 
 :root[data-theme="dark"] {
 	--primary-color: #FF868E;
-	--primary-color-200: #ffffff0d;
+	--primary-color-200: rgba(255, 134, 142, 0.20);
 	--primary-background-color: #1D1D1D;
 	--primary-text-color: #FFFFFF;
 
-	--secondary-color: #ffffff0d;
+	--secondary-color: rgba(255, 255, 255, 0.05);
 	--secondary-text-color: #8C8C8C;
 }
 
@@ -36,6 +36,12 @@ body {
 	min-height: 100vh;
 	transition: all .3s ease;
 	overflow: hidden;
+}
+
+@media screen and (max-width: 1440px) {
+	body {
+		padding-right: 30px;
+	}
 }
 
 a {
