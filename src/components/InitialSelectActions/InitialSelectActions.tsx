@@ -1,14 +1,15 @@
-import Logo from "@/components/ui/Logo/Logo";
+import HiIcon from "@/assets/icons/greeting.svg";
+import breedsImage from "@/assets/images/breeds.png";
+import galleryImage from "@/assets/images/gallery.png";
+import votingImage from "@/assets/images/vote.png";
+import LayoutHeader from "@/components/ui/Layout/components/LayoutHeader/LayoutHeader";
+
 import { ROUTES } from "@/constants/routes";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import styles from "./InitialSelectActions.module.scss";
-import HiIcon from "@/assets/icons/hi.svg";
 
-import votingImage from "@/assets/images/vote.png";
-import breedsImage from "@/assets/images/breeds.png";
-import galleryImage from "@/assets/images/gallery.png";
+import styles from "./InitialSelectActions.module.scss";
 
 interface CardItem {
 	name: string;
@@ -27,11 +28,13 @@ const InitialSelectActions: FC = () => {
 		{ name: "GALLERY", route: ROUTES.gallery, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
 	];
 
+	const getRouterPath = (cardPath: string): boolean => {
+		return router.pathname === cardPath;
+	};
+
 	return (
 		<div className={styles.wrapper}>
-			<header>
-				<Logo />
-			</header>
+			<LayoutHeader />
 			<section className={styles.layoutContent}>
 				<div className={styles.greetingWrapper}>
 					<h1 className={styles.greetingTitle}>Hi!</h1>
@@ -44,13 +47,12 @@ const InitialSelectActions: FC = () => {
 						{data.map((card, index) => (
 							<div key={index}>
 								<div className={styles.cardImageContainer} style={{ backgroundColor: card.bgColor }}>
-									<Image src={card.imageUrl} alt={card.description} />
+									<Image priority={true} src={card.imageUrl} alt={card.description} />
 								</div>
-
 								<button
 									style={{
-										background: router.pathname === card.route ? "#FF868E" : "",
-										color: router.pathname === card.route ? "#FFF" : "",
+										background: getRouterPath(card.route) ? "var(--primary-color)" : "var(--secondary-color)",
+										color: getRouterPath(card.route) ? "#FFF" : "var(--primary-color)",
 									}}
 									className={styles.cardButton}
 									onClick={() => {

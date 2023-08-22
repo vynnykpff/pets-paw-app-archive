@@ -1,4 +1,4 @@
-import BasicLayoutPage from "@/components/ui/BasicLayoutPage/BasicLayoutPage";
+import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import Head from "next/head";
 import { FC } from "react";
 
@@ -8,7 +8,7 @@ const Voting: FC = () => {
 			<Head>
 				<title>Voting - PetsPaw</title>
 			</Head>
-			<BasicLayoutPage>Voting page</BasicLayoutPage>
+			<LayoutPage>Voting page</LayoutPage>
 		</>
 	);
 };

@@ -20,19 +20,21 @@
     font-size: 38px;
     font-weight: 500;
     margin: 0;
+    color: var(--primary-text-color)
   }
 }
 
 .subGreeting {
   font-weight: 400;
-  color: #8C8C8C;
   font-size: 20px;
   margin-bottom: 60px;
+  color: var( --secondary-text-color)
 }
 
 
 .cardsTitle {
   margin-bottom: 20px;
+  color: var(--primary-text-color)
 }
 
 .cardsContainer{
@@ -52,7 +54,7 @@
 
   .cardButton {
     border-radius: 10px;
-    background: #FFF;
+    background: var();
     border: none;
     width: 100%;
     max-width: 138px;
