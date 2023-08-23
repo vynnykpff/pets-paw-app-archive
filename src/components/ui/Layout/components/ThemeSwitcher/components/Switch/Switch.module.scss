@@ -1,12 +1,12 @@
 .toggleSwitch {
   position: relative;
-  width: 44px;
-  height: 24px;
+  width: 54px;
+  height: 30px;
 
   .switchLabel {
     position: absolute;
     width: 100%;
-    height: 24px;
+    height: 30px;
     background-color: var(--primary-color-200);
     border-radius: 50px;
     cursor: pointer;
@@ -31,10 +31,10 @@
       &::before {
         content: "";
         position: absolute;
-        top: 4px;
-        right: 4px;
-        width: 16px;
-        height: 16px;
+        top: 5px;
+        right: 6px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         background-color: var(--primary-color);
         -webkit-transition: 0.3s;
@@ -43,7 +43,7 @@
     }
 
     .checkbox:checked ~ .slider::before {
-      transform: translateX(-20px);
+      transform: translateX(-22px);
       background-color: var(--primary-color);
       -webkit-box-shadow: none;
       box-shadow: none;

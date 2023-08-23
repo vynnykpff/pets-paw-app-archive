@@ -1,5 +1,5 @@
-import HeaderPageNavItem from "@/components/HeaderPageNavItem/HeaderPageNavItem";
-import SearchField from "@/components/SearchField/SearchField";
+import SearchField from "@/components/ui/SearchField/SearchField";
+import HeaderPageNavItem from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageHeader/components/HeaderPageNavItem/HeaderPageNavItem";
 import { ROUTES } from "@/constants/routes";
 import { INavItem } from "@/types/navItem";
 import styles from "./LayoutPageHeader.module.scss";

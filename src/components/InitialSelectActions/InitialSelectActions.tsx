@@ -5,6 +5,7 @@ import votingImage from "@/assets/images/vote.png";
 import LayoutHeader from "@/components/ui/Layout/components/LayoutHeader/LayoutHeader";
 
 import { ROUTES } from "@/constants/routes";
+import cn from "classnames";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -29,10 +30,6 @@ const InitialSelectActions: FC = () => {
 		{ name: "GALLERY", route: ROUTES.gallery, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
 	];
 
-	const getRouterPath = (cardPath: string): boolean => {
-		return router.pathname === cardPath;
-	};
-
 	return (
 		<div className={styles.container}>
 			<LayoutHeader />
@@ -46,21 +43,20 @@ const InitialSelectActions: FC = () => {
 					<h3 className={styles.cardsTitle}>Lets start using The Cat API</h3>
 					<div className={styles.cardsContainer}>
 						{data.map((card, index) => (
-							<div key={index}>
-								<div className={styles.cardImageContainer} style={{ backgroundColor: card.bgColor }}>
+							<Link href={card.route} key={index} className={styles.cardContent}>
+								<div
+									className={cn(
+										styles.cardImageContainer,
+										router.pathname === card.route ? styles.activeCardImageContainer : styles.cardImageContainer,
+									)}
+									style={{ backgroundColor: card.bgColor }}
+								>
 									<Image priority={true} src={card.imageUrl} alt={card.description} />
 								</div>
-								<Link
-									href={card.route}
-									style={{
-										background: getRouterPath(card.route) ? "var(--primary-color)" : "var(--secondary-color)",
-										color: getRouterPath(card.route) ? "#FFF" : "var(--primary-color)",
-									}}
-									className={styles.cardButton}
-								>
+								<button className={cn(styles.cardButton, router.pathname === card.route ? styles.activeCardButton : styles.cardButton)}>
 									{card.name}
-								</Link>
-							</div>
+								</button>
+							</Link>
 						))}
 					</div>
 				</div>
