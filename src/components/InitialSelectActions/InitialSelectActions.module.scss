@@ -20,7 +20,7 @@
     font-size: 38px;
     font-weight: 500;
     margin: 0;
-    color: var(--primary-text-color)
+    color: var(--text-primary)
   }
 }
 
@@ -28,13 +28,13 @@
   font-weight: 400;
   font-size: 20px;
   margin-bottom: 60px;
-  color: var(--secondary-text-color)
+  color: var(--text-secondary)
 }
 
 
 .cardsTitle {
   margin-bottom: 20px;
-  color: var(--primary-text-color);
+  color: var(--text-primary);
   font-size: 20px;
 }
 
@@ -49,15 +49,15 @@
       transition: all .3s ease;
 
       .cardImageContainer {
-        border: 4px solid #FFF;
+        border: 4px solid var(--background-default);;
       }
 
       .cardButton {
-        background-color: var(--primary-color-200);
+        background-color: var(--background-primary-200);
       }
 
       .activeCardButton {
-        background-color: var(--primary-color);
+        background-color: var(--background-static);
       }
     }
 
@@ -78,7 +78,7 @@
       display: flex;
       justify-content: center;
       border-radius: 10px;
-      color: var(--primary-color);
+      color: var(--background-static);
       border: none;
       width: 100%;
       max-width: 100%;
@@ -106,12 +106,12 @@
 
     .activeCardButton {
       transition: all .3s ease;
-      background-color: var(--primary-color);
-      color: #fff;
+      background-color: var(--background-static);
+      color: var(--background-default);;
 
       &:hover {
         transition: all .3s ease;
-        background-color: var(--primary-color);
+        background-color: var(--background-static);
       }
     }
   }

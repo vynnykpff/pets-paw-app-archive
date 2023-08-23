@@ -1,3 +1,4 @@
+import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import Head from "next/head";
 import { FC } from "react";
@@ -9,7 +10,9 @@ const Breeds: FC = () => {
 				<title>Breeds - PetsPaw</title>
 			</Head>
 
-			<LayoutPage>Breeds Page</LayoutPage>
+			<LayoutPage>
+				<LayoutPageContent>Breeds Page</LayoutPageContent>
+			</LayoutPage>
 		</>
 	);
 };

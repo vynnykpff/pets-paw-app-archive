@@ -1,0 +1,41 @@
+.votingLogsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+  background-color: var(--background-secondary-100);
+  padding: 15px 20px 15px 15px;
+  border-radius: 10px;
+  column-gap: 30px;
+  margin-top: 45px;
+
+  .dataContainer {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+    .logTime {
+      display: flex;
+      align-items: center;
+      background-color: var(--background-primary-100);
+      border-radius: 5px;
+      padding: 3px 10px;
+    }
+
+    .logTitle {
+      color: var(--text-secondary);
+
+      .logCode {
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+    }
+  }
+
+  .logIcon svg {
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+  }
+}

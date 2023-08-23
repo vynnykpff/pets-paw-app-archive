@@ -7,7 +7,6 @@ import styles from "./ThemeIndicator.module.scss";
 
 const ThemeIndicator = () => {
 	const theme = useAppSelector(state => state.themeSliceReducer);
-
 	return <div className={styles.indicatorCircle}>{theme.themeSliceReducer === THEME.LIGHT ? <LightIndicator /> : <DarkIndicator />}</div>;
 };
 

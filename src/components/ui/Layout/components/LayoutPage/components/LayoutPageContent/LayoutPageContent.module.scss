@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+  background-color: var(--background-secondary);
+  border-radius: 20px;
+  padding: 20px;
+
+  .pageNavigate {
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 20px;
+  }
+}
