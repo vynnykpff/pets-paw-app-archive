@@ -6,16 +6,16 @@
   align-items: center;
   padding: 0 10px 0 20px;
   border-radius: 20px;
-  background-color: var(--secondary-color);
+  background-color: var(--background-secondary);
   border: 2px solid transparent;
   transition: all .3s ease;
 
   &:hover {
-    border: 2px solid var(--primary-color-200);
+    border: 2px solid var(--background-primary-200);
     transition: all .3s ease;
 
     .iconContainer {
-      background-color: var(--primary-color-200);
+      background-color: var(--background-primary-200);
     }
   }
 
@@ -26,10 +26,10 @@
     width: 80%;
     background: none;
     font-size: 20px;
-    color: var(--primary-text-color);
+    color: var(--text-primary);
 
     &::placeholder {
-      color: var(--secondary-text-color);
+      color: var(--text-secondary);
       font-weight: 400;
     }
   }
@@ -41,25 +41,25 @@
     border-radius: 10px;
     width: 40px;
     height: 40px;
-    background-color: var(--primary-color-200);
+    background-color: var(--background-primary-200);
     transition: all .3s ease;
     cursor: pointer;
 
     &:hover {
-      background-color: var(--primary-color);
+      background-color: var(--background-static);
       transition: all .3s ease;
 
       svg {
-        fill: #fff;
+        fill: var(--background-default);;
       }
     }
   }
 }
 
 .searchContainerFocus {
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--background-static);
 
   &:hover {
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--background-static);
   }
 }

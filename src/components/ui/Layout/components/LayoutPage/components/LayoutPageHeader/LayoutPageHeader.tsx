@@ -6,12 +6,12 @@ import styles from "./LayoutPageHeader.module.scss";
 
 import LikeIcon from "@/assets/icons/like.svg";
 import DislikeIcon from "@/assets/icons/dislike.svg";
-import Favourites from "@/assets/icons/favourite.svg";
+import FavouritesIcon from "@/assets/icons/favourite.svg";
 
 const LayoutPageHeader = () => {
 	const data: INavItem[] = [
 		{ route: ROUTES.likes, NavIcon: LikeIcon },
-		{ route: ROUTES.favourites, NavIcon: Favourites },
+		{ route: ROUTES.favourites, NavIcon: FavouritesIcon },
 		{ route: ROUTES.dislikes, NavIcon: DislikeIcon },
 	];
 

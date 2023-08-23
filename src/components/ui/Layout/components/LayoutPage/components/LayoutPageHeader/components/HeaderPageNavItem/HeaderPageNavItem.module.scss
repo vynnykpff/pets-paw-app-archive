@@ -5,33 +5,33 @@
   min-width: 60px;
   height: 60px;
   border-radius: 20px;
-  background-color: var(--secondary-color);
+  background-color: var(--background-secondary);
   transition: all .3s ease;
 
   &:hover {
     transition: color .3s ease;
-    background-color: var(--primary-color-200);
+    background-color: var(--background-primary-200);
   }
 
   .icon {
     & svg {
       display: flex;
-      fill: var(--primary-color);
+      fill: var(--background-static);
     }
   }
 
   .iconActive {
     & svg {
-      fill: #fff;
+      fill: var(--background-default);;
     }
 
   }
 }
 
 .navActiveIconContainer {
-  background-color: var(--primary-color);
+  background-color: var(--background-static);
 
   &:hover {
-    background-color: var(--primary-color);
+    background-color: var(--background-static);
   }
 }

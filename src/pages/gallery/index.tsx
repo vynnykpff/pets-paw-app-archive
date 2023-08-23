@@ -1,3 +1,4 @@
+import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import Head from "next/head";
 import { FC } from "react";
@@ -8,7 +9,9 @@ const Gallery: FC = () => {
 			<Head>
 				<title>Gallery - PetsPaw</title>
 			</Head>
-			<LayoutPage>Gallery page</LayoutPage>
+			<LayoutPage>
+				<LayoutPageContent>Gallery page</LayoutPageContent>
+			</LayoutPage>
 		</>
 	);
 };

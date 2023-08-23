@@ -6,11 +6,15 @@ import styles from "./LayoutPage.module.scss";
 
 const LayoutPage: FC<PropsWithChildren> = ({ children }) => {
 	const router = useRouter();
-	const isHeaderVisible = router.pathname !== ROUTES.home;
+	const isContentVisible = router.pathname !== ROUTES.home;
 
 	return (
 		<div className={styles.container}>
-			{isHeaderVisible && <LayoutPageHeader />}
+			{isContentVisible && (
+				<>
+					<LayoutPageHeader />
+				</>
+			)}
 			{children}
 		</div>
 	);

@@ -1,0 +1,13 @@
+.pathBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-static);
+  height: 40px;
+  border-radius: 10px;
+  color: var(--background-default);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  padding: 0 30px;
+}
