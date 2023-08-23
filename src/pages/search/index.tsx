@@ -2,15 +2,15 @@ import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage"
 import Head from "next/head";
 import { FC } from "react";
 
-const Gallery: FC = () => {
+const Search: FC = () => {
 	return (
 		<>
 			<Head>
-				<title>Gallery - PetsPaw</title>
+				<title>Search - PetsPaw</title>
 			</Head>
-			<LayoutPage>Gallery page</LayoutPage>
+			<LayoutPage>Search page</LayoutPage>
 		</>
 	);
 };
 
-export default Gallery;
+export default Search;

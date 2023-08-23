@@ -23,6 +23,7 @@
 - [Next.js](https://nextjs.org/)
 - [React](https://react.dev/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Redux Persist](https://www.npmjs.com/package/redux-persist)
 - [Axios](https://axios-http.com/)
 - [normalize.css](https://necolas.github.io/normalize.css/)
 

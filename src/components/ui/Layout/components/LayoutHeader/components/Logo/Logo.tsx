@@ -1,21 +1,14 @@
 import LogoIcon from "@/assets/logo/logo.svg";
 import { ROUTES } from "@/constants/routes";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import styles from "./Logo.module.scss";
 
 const Logo = () => {
-	const router = useRouter();
-
 	return (
-		<div
-			onClick={() => {
-				router.push(ROUTES.home);
-			}}
-			className={styles.logoWrapper}
-		>
+		<Link href={ROUTES.home} className={styles.logoContainer}>
 			<LogoIcon />
 			<p className={styles.logoTitle}>PetsPaw</p>
-		</div>
+		</Link>
 	);
 };
 

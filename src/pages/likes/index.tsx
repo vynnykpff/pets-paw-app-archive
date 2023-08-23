@@ -2,15 +2,15 @@ import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage"
 import Head from "next/head";
 import { FC } from "react";
 
-const Gallery: FC = () => {
+const Likes: FC = () => {
 	return (
 		<>
 			<Head>
-				<title>Gallery - PetsPaw</title>
+				<title>Likes - PetsPaw</title>
 			</Head>
-			<LayoutPage>Gallery page</LayoutPage>
+			<LayoutPage>Likes page</LayoutPage>
 		</>
 	);
 };
 
-export default Gallery;
+export default Likes;

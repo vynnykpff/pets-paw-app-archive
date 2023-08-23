@@ -1,0 +1,37 @@
+.navIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  transition: all .3s ease;
+
+  &:hover {
+    transition: color .3s ease;
+    background-color: var(--primary-color-200);
+  }
+
+  .icon {
+    & svg {
+      display: flex;
+      fill: var(--primary-color);
+    }
+  }
+
+  .iconActive {
+    & svg {
+      fill: #fff;
+    }
+
+  }
+}
+
+.navActiveIconContainer {
+  background-color: var(--primary-color);
+
+  &:hover {
+    background-color: var(--primary-color);
+  }
+}
