@@ -9,4 +9,11 @@
     column-gap: 10px;
     margin-bottom: 20px;
   }
+
+  .scrollContainer {
+    overflow-y: auto;
+    width: 100%;
+    max-height: calc(100vh - 230px);
+    padding-right: 10px;
+  }
 }

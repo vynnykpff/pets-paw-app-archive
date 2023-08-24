@@ -1,35 +1,33 @@
-import { THEME } from "@/constants/theme";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { useEffect } from "react";
+
 import { setTheme } from "@/store/slices/themeSlice";
-import { useEffect, useState } from "react";
+import { THEME } from "@/constants/theme";
+
 import styles from "./Switch.module.scss";
 
 const Switch = () => {
 	const theme = useAppSelector(state => state.themeSliceReducer);
 	const dispatch = useAppDispatch();
-	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {
-		if (theme.themeSliceReducer === THEME.LIGHT) {
-			setIsChecked(false);
-		} else {
-			setIsChecked(true);
-		}
+		const currentTheme = localStorage.getItem("theme") || THEME.LIGHT;
+		dispatch(setTheme(currentTheme));
 	}, []);
 
+	useEffect(() => {
+		localStorage.setItem("theme", theme);
+	}, [theme]);
+
 	const onChangeTheme = () => {
-		setIsChecked(prev => !prev);
-		if (theme.themeSliceReducer === THEME.LIGHT) {
-			return dispatch(setTheme(THEME.DARK));
-		}
-		return dispatch(setTheme(THEME.LIGHT));
+		dispatch(setTheme(theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT));
 	};
 
 	return (
 		<div className={styles.toggleSwitch}>
 			<label className={styles.switchLabel}>
-				<input checked={isChecked} onChange={onChangeTheme} type="checkbox" className={styles.checkbox} />
+				<input checked={theme !== THEME.LIGHT} onChange={onChangeTheme} type="checkbox" className={styles.checkbox} />
 				<span className={styles.slider}></span>
 			</label>
 		</div>

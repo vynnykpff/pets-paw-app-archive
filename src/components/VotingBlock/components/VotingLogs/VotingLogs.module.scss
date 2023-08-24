@@ -1,4 +1,4 @@
-.votingLogsContainer {
+.votingLogsContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,7 +7,7 @@
   padding: 15px 20px 15px 15px;
   border-radius: 10px;
   column-gap: 30px;
-  margin-top: 45px;
+  margin-bottom: 10px;
 
   .dataContainer {
     display: flex;

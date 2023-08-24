@@ -5,13 +5,19 @@ import styles from "./VotingBlock.module.scss";
 
 const VotingBlock = () => {
 	return (
-		<>
+		<div className={styles.votingContainer}>
 			<div className={styles.votingBlock}>
 				<VotingImage />
 				<VotingReaction />
 			</div>
-			<VotingLogs />
-		</>
+			<div className={styles.votingLogsContainer}>
+				<VotingLogs />
+				<VotingLogs />
+				<VotingLogs />
+				<VotingLogs />
+				<VotingLogs />
+			</div>
+		</div>
 	);
 };
 

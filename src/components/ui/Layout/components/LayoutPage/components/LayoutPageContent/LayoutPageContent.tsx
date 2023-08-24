@@ -26,8 +26,7 @@ const LayoutPageContent: FC<PropsWithChildren> = ({ children }) => {
 				</Button>
 				<CurrentPath path={path} />
 			</div>
-
-			{children}
+			<div className={styles.scrollContainer}>{children}</div>
 		</div>
 	);
 };

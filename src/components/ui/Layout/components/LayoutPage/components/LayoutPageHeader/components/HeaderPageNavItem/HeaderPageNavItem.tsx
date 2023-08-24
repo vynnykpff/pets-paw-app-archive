@@ -1,4 +1,4 @@
-import { INavItem } from "@/types/navItem";
+import { INavItem } from "@/types/NavItem";
 import cn from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
