@@ -12,7 +12,6 @@ const NotFound: FC = () => {
 			<LayoutPage>
 				<h1 className={styles.notFoundTitle}>404 - Page Not Found</h1>
 			</LayoutPage>
-			;
 		</>
 	);
 };

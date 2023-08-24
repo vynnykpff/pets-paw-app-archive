@@ -1,6 +1,15 @@
-.votingBlock {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.votingContainer {
+  .votingBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .votingLogsContainer {
+    overflow-y: auto;
+    height: 260px;
+    margin-top: 45px;
+    padding-right: 10px;
+  }
 }

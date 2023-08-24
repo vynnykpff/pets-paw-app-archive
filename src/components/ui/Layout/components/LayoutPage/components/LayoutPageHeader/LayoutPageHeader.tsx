@@ -1,7 +1,7 @@
 import SearchField from "@/components/ui/SearchField/SearchField";
 import HeaderPageNavItem from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageHeader/components/HeaderPageNavItem/HeaderPageNavItem";
 import { ROUTES } from "@/constants/routes";
-import { INavItem } from "@/types/navItem";
+import { INavItem } from "@/types/NavItem";
 import styles from "./LayoutPageHeader.module.scss";
 
 import LikeIcon from "@/assets/icons/like.svg";

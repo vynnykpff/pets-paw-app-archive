@@ -3,7 +3,7 @@ import styles from "./VotingLogs.module.scss";
 
 const VotingLogs = () => {
 	return (
-		<div className={styles.votingLogsContainer}>
+		<div className={styles.votingLogsContent}>
 			<div className={styles.dataContainer}>
 				<div className={styles.logTime}>22:35</div>
 				<div className={styles.logTitle}>
