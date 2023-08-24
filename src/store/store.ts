@@ -4,11 +4,13 @@ import logger from "redux-logger";
 
 import themeSliceReducer from "./slices/themeSlice";
 import votingSliceReducer from "./slices/votingSlice/slice";
+import userSliceReducer from "./slices/userSlice";
 
 export const store = configureStore({
 	reducer: {
 		themeSliceReducer,
 		votingSliceReducer,
+		userSliceReducer,
 	},
 	middleware: [thunk, logger],
 });

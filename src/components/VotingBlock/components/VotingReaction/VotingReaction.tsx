@@ -18,7 +18,7 @@ const VotingReaction = () => {
 	const dispatch = useAppDispatch();
 
 	const handleNextImage = () => {
-		dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value: 1, sub_id: "vynnykpff" }) as unknown as AnyAction);
+		dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value: 1, sub_id: "j7F9SBLtYRNpDNTVSVUkkdXIrjO2" }) as unknown as AnyAction);
 		dispatch(getVotingImage.asyncThunk(null) as unknown as AnyAction);
 	};
 
