@@ -1,6 +1,7 @@
 import { Register } from "@/components/User/Register";
 import Head from "next/head";
 import { FC } from "react";
+import styles from "@/styles/Auth.module.scss";
 
 const RegistrationPage: FC = () => {
 	return (
@@ -8,7 +9,9 @@ const RegistrationPage: FC = () => {
 			<Head>
 				<title>Registration - PetsPaw</title>
 			</Head>
-			<Register />
+			<div className={styles.formContainer}>
+				<Register />
+			</div>
 		</>
 	);
 };

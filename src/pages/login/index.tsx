@@ -1,6 +1,8 @@
 import { Login } from "@/components/User/Login";
+import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import Head from "next/head";
 import { FC } from "react";
+import styles from "@/styles/Auth.module.scss";
 
 const LoginPage: FC = () => {
 	return (
@@ -8,9 +10,11 @@ const LoginPage: FC = () => {
 			<Head>
 				<title>Login - PetsPaw</title>
 			</Head>
-			<Login />
+			<div className={styles.formContainer}>
+				<Login />
+			</div>
 		</>
 	);
 };
 
-export default LoginPage;
+export default withAuthorizedRoute(LoginPage);

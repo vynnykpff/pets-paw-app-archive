@@ -12,7 +12,7 @@ const ModalNotification: FC<{ title: string; typeNotification: NotificationType 
 
 	return (
 		<div>
-			{notify()}
+			<span style={{ display: "none" }}>{notify()}</span>
 			<ToastContainer
 				position="top-right"
 				autoClose={5000}

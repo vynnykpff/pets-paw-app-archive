@@ -23,7 +23,6 @@ interface ICardItem {
 
 const InitialSelectActions: FC = () => {
 	const router = useRouter();
-
 	const data: ICardItem[] = [
 		{ name: "VOTING", route: ROUTES.voting, imageUrl: votingImage, description: "voting image", bgColor: "#B4B7FF" },
 		{ name: "BREEDS", route: ROUTES.breeds, imageUrl: breedsImage, description: "breeds image", bgColor: "#97EAB9" },
