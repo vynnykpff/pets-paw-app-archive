@@ -5,8 +5,9 @@ import FavouriteIcon from "@/assets/icons/favourite.svg";
 import LikeIcon from "@/assets/icons/like.svg";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { setFavouriteReaction } from "@/store/slices/votingSlice/thunks/favourite/setFavouriteReaction";
 import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
-import { setVotingReaction } from "@/store/slices/votingSlice/thunks/setVotingReaction";
+import { setVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/setVotingReaction";
 import cn from "classnames";
 import { useState } from "react";
 import styles from "./VotingReaction.module.scss";
@@ -17,8 +18,14 @@ const VotingReaction = () => {
 	const dispatch = useAppDispatch();
 
 	const handleNextImage = (value: number) => {
+		setIsClicked(false);
 		dispatch(getVotingImage.asyncThunk(null));
 		dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value, sub_id: subId }));
+	};
+
+	const handleSetFavourites = () => {
+		setIsClicked(true);
+		dispatch(setFavouriteReaction.asyncThunk({ image_id: imageId, sub_id: subId }));
 	};
 
 	return (
@@ -26,7 +33,7 @@ const VotingReaction = () => {
 			<div onClick={() => handleNextImage(1)} className={cn(styles.votingReactionItem, styles.likeItem)}>
 				<LikeIcon />
 			</div>
-			<div onClick={() => setIsClicked(prev => !prev)} className={cn(styles.votingReactionItem, styles.favouriteItem)}>
+			<div onClick={handleSetFavourites} className={cn(styles.votingReactionItem, styles.favouriteItem)}>
 				{isClicked ? <ActiveFavouriteIcon /> : <FavouriteIcon />}
 			</div>
 			<div onClick={() => handleNextImage(-1)} className={cn(styles.votingReactionItem, styles.dislikeItem)}>

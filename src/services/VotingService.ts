@@ -1,3 +1,4 @@
+import { FavouritesType } from "@/types/Favourites";
 import { SetVoting } from "@/types/SetVoting";
 import axios from "axios";
 
@@ -26,6 +27,24 @@ export class VotingService {
 
 	public static async getVotingReaction(userId: string) {
 		const response = await this.votingApi.get(`/votes?sub_id=${userId}`);
+		return response.data;
+	}
+
+	public static async setFavourites(favouriteData: FavouritesType) {
+		const response = await this.votingApi.post(`/favourites`, {
+			image_id: favouriteData.image_id,
+			sub_id: favouriteData.sub_id,
+		});
+		return response.data;
+	}
+
+	public static async getFavourites(userId: string) {
+		const response = await this.votingApi.get(`/favourites?&sub_id=${userId}`);
+		return response.data;
+	}
+
+	public static async deleteFavourites(favouriteId: string) {
+		const response = await this.votingApi.delete(`/favourites/${favouriteId}`);
 		return response.data;
 	}
 }

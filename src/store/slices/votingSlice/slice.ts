@@ -1,3 +1,4 @@
+import { IFavouritesItem } from "@/types/Favourites";
 import { IReactionItem } from "@/types/ReactionItem";
 import { createSlice } from "@reduxjs/toolkit";
 import votingSliceThunks from "./thunks";
@@ -10,6 +11,7 @@ export interface VotingState {
 	value: number;
 	likesArray: IReactionItem[];
 	disLikesArray: IReactionItem[];
+	favouritesArray: IFavouritesItem[];
 }
 
 const initialState: VotingState = {
@@ -20,6 +22,7 @@ const initialState: VotingState = {
 	value: 0,
 	likesArray: [],
 	disLikesArray: [],
+	favouritesArray: [],
 };
 
 export const votingSlice = createSlice({

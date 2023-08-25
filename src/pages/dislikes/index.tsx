@@ -3,7 +3,7 @@ import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage"
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { getVotingReaction } from "@/store/slices/votingSlice/thunks/getVotingReaction";
+import { getVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/getVotingReaction";
 import Head from "next/head";
 import { FC, useEffect } from "react";
 
