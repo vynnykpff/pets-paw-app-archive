@@ -130,4 +130,10 @@
     color: var(--text-primary);
     font-weight: 400;
   }
+
+  .errorMessage {
+    text-align: right;
+    color: var(--background-static);
+    font-size: 14px;
+  }
 }
