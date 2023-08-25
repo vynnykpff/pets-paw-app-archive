@@ -14,12 +14,8 @@ const asyncThunk = createAsyncThunk("voting/set_reaction", async function (setVo
 	}
 });
 
-const storeHandler: StoreAsyncThunkHandler<VotingState> = (state, action) => {
-	state.image_id = action.payload.image_id;
-	state.value = action.payload.value;
-	state.sub_id = action.payload.sub_id;
-	state.isPending = false;
-};
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const storeHandler: StoreAsyncThunkHandler<VotingState> = () => {};
 
 export const setVotingReaction: StoreAsyncThunk<VotingState> = {
 	asyncThunk,

@@ -1,4 +1,5 @@
 import { Register } from "@/components/User/Register";
+import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import Head from "next/head";
 import { FC } from "react";
 import styles from "@/styles/Auth.module.scss";
@@ -16,4 +17,4 @@ const RegistrationPage: FC = () => {
 	);
 };
 
-export default RegistrationPage;
+export default withAuthorizedRoute(RegistrationPage);

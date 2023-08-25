@@ -23,4 +23,9 @@ export class VotingService {
 		});
 		return response.data;
 	}
+
+	public static async getVotingReaction(userId: string) {
+		const response = await this.votingApi.get(`/votes?sub_id=${userId}`);
+		return response.data;
+	}
 }
