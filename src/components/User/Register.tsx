@@ -3,18 +3,25 @@ import ModalNotification from "@/components/ui/ModalNotification/ModalNotificati
 import { ROUTES } from "@/constants/routes";
 import { auth } from "@/firebase-config";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useCookies } from "@/hooks/useCookies";
 import { setUser } from "@/store/slices/userSlice";
 import { IUserCredentials } from "@/types/UserCredentials";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getIdToken, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Register = () => {
 	const dispatch = useAppDispatch();
-	const router = useRouter();
-	const { setCookie, deleteCookie, getCookie } = useCookies();
 	const [showErrorModal, setShowErrorModal] = useState(false);
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
+	const router = useRouter();
+
+	useEffect(() => {
+		if (showSuccessModal) {
+			setTimeout(() => {
+				router.push(ROUTES.home);
+			}, 1000);
+		}
+	}, [showSuccessModal]);
 
 	const handleRegister = (userData: IUserCredentials) => {
 		createUserWithEmailAndPassword(auth, userData.email, userData.password)
@@ -27,21 +34,8 @@ export const Register = () => {
 						token: idToken,
 					}),
 				);
-
-				router.push(ROUTES.home);
-
-				const cookieUserId = getCookie("userId") || null;
-
-				if (cookieUserId) {
-					deleteCookie("userId");
-				}
-
-				if (auth.currentUser) {
-					const userId = auth.currentUser.uid;
-					setCookie("userId", userId);
-				}
-
-				setCookie("isAuth", String(!!auth.currentUser?.email));
+				setShowErrorModal(false);
+				setShowSuccessModal(true);
 			})
 			.catch(() => <ModalNotification title={"Error signing in with Email and Password!"} typeNotification={"error"} />);
 	};
@@ -63,24 +57,27 @@ export const Register = () => {
 					}),
 				);
 
-				router.push(ROUTES.home);
-
-				const userId = auth.currentUser?.uid;
-				if (userId) {
-					setCookie("userId", userId);
-				}
-
-				setCookie("isAuth", String(!!auth.currentUser?.email));
+				setShowErrorModal(false);
+				setShowSuccessModal(true);
 			}
 		} catch (error) {
+			setShowSuccessModal(false);
 			setShowErrorModal(true);
 		}
 	};
 
 	return (
 		<>
-			<Form title="register" handleGoogleLogin={handleGoogleLogin} handleClick={handleRegister} />
+			<Form
+				title="Registration"
+				description="You already have an account?"
+				authText="Sign In"
+				route={ROUTES.login}
+				handleGoogleLogin={handleGoogleLogin}
+				handleClick={handleRegister}
+			/>
 			{showErrorModal && <ModalNotification title="Error signing in with Google!" typeNotification="error" />}
+			{showSuccessModal && <ModalNotification title="Registration Success!" typeNotification="success" />}
 		</>
 	);
 };

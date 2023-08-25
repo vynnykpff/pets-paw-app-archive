@@ -1,4 +1,23 @@
 .layoutHeader{
   display: flex;
   justify-content: space-between;
+
+  .actionsContainer {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+  }
+
+  .authLink {
+    color: var(--text-primary);
+    font-weight: 500;
+    letter-spacing: 1.1px;
+    cursor: pointer;
+    transition: .3s all ease;
+
+    &:hover {
+      transition: .3s all ease;
+      color: var(--background-static);
+    }
+  }
 }

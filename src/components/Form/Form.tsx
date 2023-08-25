@@ -1,37 +1,119 @@
-import { ROUTES } from "@/constants/routes";
-import { auth } from "@/firebase-config";
+import { AuthScheme } from "@/schemes/AuthScheme";
 import { IUserCredentials } from "@/types/UserCredentials";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useSignOut } from "react-firebase-hooks/auth";
+import cn from "classnames";
+import { Formik } from "formik";
+import Link from "next/link";
+import React, { useState } from "react";
+import styles from "./Form.module.scss";
+
+import PasswordIcon from "@/assets/icons/password.svg";
+import EmailIcon from "@/assets/icons/email.svg";
+import GoogleIcon from "@/assets/icons/google.svg";
 
 interface IFormProps {
 	title: string;
+	route: string;
+	description: string;
+	authText: string;
 
 	handleGoogleLogin(): void;
 
 	handleClick(userData: IUserCredentials): void;
 }
 
-const Form = ({ title, handleClick, handleGoogleLogin }: IFormProps) => {
-	const [email, setEmail] = useState("");
-	const [pass, setPass] = useState("");
-	const [signOut] = useSignOut(auth);
+interface IValues {
+	email: string;
+	password: string;
+}
 
-	const router = useRouter();
+const Form = ({ title, handleClick, handleGoogleLogin, route, description, authText }: IFormProps) => {
+	const [isGoogleLogin, setIsGoogleLogin] = useState(false);
+	const [isFocus, setIsFocus] = useState(false);
 
-	const handleLogOut = () => {
-		signOut().then(() => router.push(ROUTES.home));
+	const handleSubmit = (values: IValues) => {
+		isGoogleLogin && handleGoogleLogin();
+		!isGoogleLogin && handleClick({ email: values.email, password: values.password });
 	};
 
 	return (
-		<div>
-			<input type="email" value={email} placeholder="email" onChange={e => setEmail(e.target.value)} />
-			<input type="password" value={pass} placeholder="password" onChange={e => setPass(e.target.value)} />
-			<button onClick={() => handleClick({ email, password: pass })}>{title}</button>
-			<button onClick={handleGoogleLogin}>Auth with google</button>
-			<button onClick={handleLogOut}>Logout</button>
-		</div>
+		<form onSubmit={e => e.preventDefault()} className={styles.form}>
+			<Formik
+				initialValues={{
+					email: "",
+					password: "",
+				}}
+				validationSchema={AuthScheme}
+				onSubmit={handleSubmit}
+			>
+				{({ handleChange, handleSubmit, values, errors }) => (
+					<>
+						<p className={styles.formTitle}>{title}</p>
+						<div className={styles.flexColumn}>
+							<label>Email</label>
+						</div>
+						<div className={cn(styles.inputForm, isFocus ? styles.activeInput : styles.inputForm)}>
+							<PasswordIcon />
+							<input
+								onFocus={() => setIsFocus(true)}
+								onBlur={() => setIsFocus(false)}
+								value={values.email}
+								onChange={handleChange("email")}
+								placeholder="Enter your Email"
+								className={styles.input}
+								type="text"
+							/>
+						</div>
+						<span className={styles.errorMessage}>{errors.email}</span>
+						<div className={styles.flexColumn}>
+							<label>Password </label>
+						</div>
+						<div className={cn(styles.inputForm, isFocus ? styles.activeInput : styles.inputForm)}>
+							<EmailIcon />
+							<input
+								onFocus={() => setIsFocus(true)}
+								onBlur={() => setIsFocus(false)}
+								placeholder="Enter your Password"
+								className={styles.input}
+								value={values.password}
+								onChange={handleChange("password")}
+								type="password"
+							/>
+						</div>
+						<span className={styles.errorMessage}>{errors.password}</span>
+						<button
+							type="submit"
+							onClick={() => {
+								setIsGoogleLogin(false);
+								handleSubmit();
+							}}
+							className={styles.buttonSubmit}
+						>
+							{title}
+						</button>
+						<p className={styles.p}>
+							{description}
+							<Link href={route} className={styles.span}>
+								{authText}
+							</Link>
+						</p>
+						<p className={cn(styles.p, styles.line)}>Or With</p>
+						<div className={styles.flexRow}>
+							<button
+								type="submit"
+								onClick={() => {
+									setIsGoogleLogin(true);
+									handleSubmit();
+								}}
+								className={cn(styles.btn, styles.google)}
+							>
+								<GoogleIcon />
+								Google
+							</button>
+						</div>
+					</>
+				)}
+			</Formik>
+		</form>
 	);
 };
 
