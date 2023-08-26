@@ -120,7 +120,8 @@
       {
         "format": [
           "PascalCase",
-          "camelCase"
+          "camelCase",
+          "UPPER_CASE"
         ],
         "selector": [
           "enumMember"

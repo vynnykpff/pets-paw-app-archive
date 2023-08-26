@@ -7,15 +7,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 export const AuthorizedRoute: FC<PropsWithChildren> = ({ children }) => {
 	const [user, loading] = useAuthState(auth);
 	const router = useRouter();
-	const isAuthPath = [ROUTES.login, ROUTES.registration].includes(router.pathname as ROUTES);
+	const isAuthPath = [ROUTES.LOGIN, ROUTES.REGISTRATION].includes(router.pathname as ROUTES);
 
 	const onMount = () => {
 		if (loading) return;
 
 		if (!user && !isAuthPath) {
-			router.push(ROUTES.login);
+			router.push(ROUTES.LOGIN);
 		} else if (user && isAuthPath) {
-			router.push(ROUTES.home);
+			router.push(ROUTES.HOME);
 		}
 	};
 

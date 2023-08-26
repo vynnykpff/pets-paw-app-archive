@@ -1,5 +1,5 @@
 import { FavouritesType } from "@/common/types/Favourites";
-import { SetVoting } from "@/common/types/SetVoting";
+import { VotingData } from "@/common/types/VotingData";
 import axios from "axios";
 
 // TODO
@@ -19,7 +19,7 @@ export class VotingService {
 		return response.data[0];
 	}
 
-	public static async setReaction(reaction: SetVoting) {
+	public static async setReaction(reaction: VotingData) {
 		const response = await this.votingApi.post("/votes", {
 			image_id: reaction.image_id,
 			value: reaction.value,

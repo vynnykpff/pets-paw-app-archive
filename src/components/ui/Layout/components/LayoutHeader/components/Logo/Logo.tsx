@@ -5,7 +5,7 @@ import styles from "./Logo.module.scss";
 
 const Logo = () => {
 	return (
-		<Link href={ROUTES.home} className={styles.logoContainer}>
+		<Link href={ROUTES.HOME} className={styles.logoContainer}>
 			<LogoIcon />
 			<p className={styles.logoTitle}>PetsPaw</p>
 		</Link>

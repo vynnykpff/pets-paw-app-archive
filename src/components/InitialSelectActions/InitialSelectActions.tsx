@@ -24,9 +24,9 @@ interface ICardItem {
 const InitialSelectActions: FC = () => {
 	const router = useRouter();
 	const data: ICardItem[] = [
-		{ name: "VOTING", route: ROUTES.voting, imageUrl: votingImage, description: "voting image", bgColor: "#B4B7FF" },
-		{ name: "BREEDS", route: ROUTES.breeds, imageUrl: breedsImage, description: "breeds image", bgColor: "#97EAB9" },
-		{ name: "GALLERY", route: ROUTES.gallery, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
+		{ name: "VOTING", route: ROUTES.VOTING, imageUrl: votingImage, description: "voting image", bgColor: "#B4B7FF" },
+		{ name: "BREEDS", route: ROUTES.BREEDS, imageUrl: breedsImage, description: "breeds image", bgColor: "#97EAB9" },
+		{ name: "GALLERY", route: ROUTES.GALLERY, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
 	];
 
 	return (

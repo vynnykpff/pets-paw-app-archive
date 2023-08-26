@@ -10,9 +10,9 @@ import FavouritesIcon from "@/assets/icons/favourite.svg";
 
 const LayoutPageHeader = () => {
 	const data: INavItem[] = [
-		{ route: ROUTES.likes, NavIcon: LikeIcon },
-		{ route: ROUTES.favourites, NavIcon: FavouritesIcon },
-		{ route: ROUTES.dislikes, NavIcon: DislikeIcon },
+		{ route: ROUTES.LIKES, NavIcon: LikeIcon },
+		{ route: ROUTES.FAVOURITES, NavIcon: FavouritesIcon },
+		{ route: ROUTES.DISLIKES, NavIcon: DislikeIcon },
 	];
 
 	return (

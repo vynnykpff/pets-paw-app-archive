@@ -14,7 +14,7 @@ const LayoutHeader = () => {
 	const router = useRouter();
 
 	const handleLogOut = () => {
-		signOut().then(() => router.push(ROUTES.home));
+		signOut().then(() => router.push(ROUTES.HOME));
 	};
 
 	return (
@@ -28,7 +28,7 @@ const LayoutHeader = () => {
 							Logout
 						</a>
 					) : (
-						<Link className={styles.authLink} href={ROUTES.login}>
+						<Link className={styles.authLink} href={ROUTES.LOGIN}>
 							Login
 						</Link>
 					)}

@@ -6,7 +6,7 @@ import styles from "./LayoutPage.module.scss";
 
 const LayoutPage: FC<PropsWithChildren> = ({ children }) => {
 	const router = useRouter();
-	const isContentVisible = router.pathname !== ROUTES.home;
+	const isContentVisible = router.pathname !== ROUTES.HOME;
 
 	return (
 		<div className={styles.container}>
