@@ -1,12 +1,17 @@
+import FavouriteIcon from "@/assets/icons/fillFavourite.svg";
 import { LogType } from "@/common/constants/logType";
+import GridImages from "@/components/GridImages/GridImages";
 import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
+import Loader from "@/components/ui/Loader/Loader";
+import LogError from "@/components/ui/LogError/LogError";
 import VotingLogs from "@/components/VotingBlock/components/VotingLogs/VotingLogs";
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { deleteFavouriteItem } from "@/store/slices/votingSlice/thunks/favourite/deleteFavouriteItem";
 import { getFavouritesItems } from "@/store/slices/votingSlice/thunks/favourite/getFavouritesItems";
+import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
 import { FC, useEffect } from "react";
 
@@ -26,7 +31,10 @@ const Favourites: FC = () => {
 		}
 	}, [logs]);
 
-	const handleRemoveFavouriteItem = (id: string) => {
+	const handleRemoveFavouriteItem = (id: string | undefined) => {
+		if (id === undefined) {
+			return;
+		}
 		dispatch(deleteFavouriteItem.asyncThunk(id));
 	};
 
@@ -39,32 +47,23 @@ const Favourites: FC = () => {
 			</Head>
 			<LayoutPage>
 				<LayoutPageContent>
-					{!isPending ? (
-						<>
-							{favouritesArray.map((item, index) => (
-								<div style={{ position: "relative", width: 150, height: 150, display: "flex", columnGap: 30 }} key={index}>
-									<img width="100%" src={item.url} alt="like item" />
-									<span
-										style={{
-											padding: 10,
-											fontSize: 20,
-											cursor: "pointer",
-											color: "var(--background-static)",
-											position: "absolute",
-											top: 0,
-											right: 0,
-										}}
-										onClick={() => handleRemoveFavouriteItem(item.id)}
-									>
-										x
-									</span>
-								</div>
-							))}
-							<VotingLogs logs={filteredLogs} />
-						</>
-					) : (
-						<div>Loading...</div>
-					)}
+					<div className={styles.galleryContainer}>
+						{!isPending ? (
+							<>
+								<GridImages isHoverAble={true} arrayImages={favouritesArray}>
+									{image => (
+										<div className={styles.imageIcon}>
+											<FavouriteIcon onClick={() => handleRemoveFavouriteItem(image.id)} />
+										</div>
+									)}
+								</GridImages>
+								{!favouritesArray.length && <LogError title="No item found" />}
+								{logs.length > 0 && <VotingLogs logs={filteredLogs} />}
+							</>
+						) : (
+							<Loader />
+						)}
+					</div>
 				</LayoutPageContent>
 			</LayoutPage>
 		</>

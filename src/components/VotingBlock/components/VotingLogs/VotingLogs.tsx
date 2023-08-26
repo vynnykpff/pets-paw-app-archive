@@ -8,9 +8,9 @@ import { FC, ReactNode } from "react";
 import styles from "./VotingLogs.module.scss";
 
 const LogIcons: Record<LogType, ReactNode> = {
-	[LogType.ADD_TO_FAVOURITE]: <FavouriteIcon viewBox="0 0 30 26" />,
-	[LogType.DISLIKE]: <DislikeIcon viewBox="0 0 30 26" />,
-	[LogType.LIKE]: <LikeIcon viewBox="0 0 30 26" />,
+	[LogType.ADD_TO_FAVOURITE]: <FavouriteIcon viewBox="0 0 30 30" />,
+	[LogType.DISLIKE]: <DislikeIcon viewBox="0 0 30 30" />,
+	[LogType.LIKE]: <LikeIcon viewBox="0 0 30 30" />,
 	[LogType.REMOVE_FROM_FAVOURITE]: <></>,
 };
 
@@ -30,7 +30,7 @@ const VotingLogs: FC<Props> = ({ logs: logsFromProps }) => {
 	const logs = logsFromProps ?? logsFromStore;
 
 	return (
-		<>
+		<div className={styles.votingLogsContainer}>
 			{logs.map(item => (
 				<div key={item.imageId} className={styles.votingLogsContent}>
 					<div className={styles.dataContainer}>
@@ -42,7 +42,7 @@ const VotingLogs: FC<Props> = ({ logs: logsFromProps }) => {
 					<div className={styles.logIcon}>{LogIcons[item.type]}</div>
 				</div>
 			))}
-		</>
+		</div>
 	);
 };
 
