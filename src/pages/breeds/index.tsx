@@ -12,7 +12,7 @@ const Index: FC = () => {
 			</Head>
 
 			<LayoutPage>
-				<LayoutPageContent>Breeds Page</LayoutPageContent>
+				<LayoutPageContent>Breeds</LayoutPageContent>
 			</LayoutPage>
 		</>
 	);
