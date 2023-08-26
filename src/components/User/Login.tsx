@@ -1,10 +1,10 @@
 import Form from "@/components/Form/Form";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
-import { ROUTES } from "@/constants/routes";
-import { auth } from "@/firebase-config";
+import { ROUTES } from "@/common/constants/routes";
+import { auth } from "@/common/firebase-config";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { setUser } from "@/store/slices/userSlice";
-import { IUserCredentials } from "@/types/UserCredentials";
+import { IUserCredentials } from "@/common/types/UserCredentials";
 import { GoogleAuthProvider, getIdToken, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -23,21 +23,22 @@ export const Login = () => {
 		}
 	}, [showSuccessModal]);
 
-	const handleLogin = (userData: IUserCredentials) => {
-		signInWithEmailAndPassword(auth, userData.email, userData.password)
-			.then(async ({ user }) => {
-				const idToken = await getIdToken(user);
-				dispatch(
-					setUser({
-						email: user.email,
-						id: user.uid,
-						token: idToken,
-					}),
-				);
-				setShowErrorModal(false);
-				setShowSuccessModal(true);
-			})
-			.catch(() => setShowErrorModal(true));
+	const handleLogin = async (userData: IUserCredentials) => {
+		try {
+			const { user } = await signInWithEmailAndPassword(auth, userData.email, userData.password);
+			const idToken = await getIdToken(user);
+			dispatch(
+				setUser({
+					email: user.email,
+					id: user.uid,
+					token: idToken,
+				}),
+			);
+			setShowErrorModal(false);
+			setShowSuccessModal(true);
+		} catch (e) {
+			setShowErrorModal(true);
+		}
 	};
 
 	const handleGoogleLogin = async () => {

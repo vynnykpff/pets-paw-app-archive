@@ -5,7 +5,7 @@ import { setFavouriteReaction } from "@/store/slices/votingSlice/thunks/favourit
 import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
 import { getVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/getVotingReaction";
 import { setVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/setVotingReaction";
-import { StoreAsyncThunk } from "@/types/StoreAsyncThunk";
+import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
 const thunks: Array<StoreAsyncThunk<VotingState>> = [
 	getVotingImage,

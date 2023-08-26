@@ -4,7 +4,7 @@ import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import Head from "next/head";
 import { FC } from "react";
 
-const Breeds: FC = () => {
+const Index: FC = () => {
 	return (
 		<>
 			<Head>
@@ -18,4 +18,4 @@ const Breeds: FC = () => {
 	);
 };
 
-export default withAuthorizedRoute(Breeds);
+export default withAuthorizedRoute(Index);

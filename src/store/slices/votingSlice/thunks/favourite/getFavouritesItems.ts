@@ -1,8 +1,8 @@
 import { VotingService } from "@/services/VotingService";
 import { VotingState } from "@/store/slices/votingSlice/slice";
-import { StoreAsyncThunk } from "@/types/StoreAsyncThunk";
+import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
-import { StoreAsyncThunkHandler } from "@/types/StoreAsyncThunkHandler";
+import { StoreAsyncThunkHandler } from "@/common/types/StoreAsyncThunkHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const asyncThunk = createAsyncThunk("voting/get_favourites_items", async function (userId: string, { rejectWithValue }) {

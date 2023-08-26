@@ -160,6 +160,7 @@
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/unbound-method": "off",
     "no-console": "warn",
+    "react/display-name": "off",
     "sort-imports": [
       "error",
       {

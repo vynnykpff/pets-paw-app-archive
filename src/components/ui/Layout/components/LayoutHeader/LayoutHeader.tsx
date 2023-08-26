@@ -1,7 +1,7 @@
 import Logo from "@/components/ui/Layout/components/LayoutHeader/components/Logo/Logo";
 import ThemeSwitcher from "@/components/ui/Layout/components/ThemeSwitcher/ThemeSwitcher";
-import { ROUTES } from "@/constants/routes";
-import { auth } from "@/firebase-config";
+import { ROUTES } from "@/common/constants/routes";
+import { auth } from "@/common/firebase-config";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";

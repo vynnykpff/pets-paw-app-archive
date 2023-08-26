@@ -1,4 +1,4 @@
-import { SetVoting } from "@/types/SetVoting";
+import { SetVoting } from "@/common/types/SetVoting";
 
 export type FavouritesType = Omit<SetVoting, "value">;
 

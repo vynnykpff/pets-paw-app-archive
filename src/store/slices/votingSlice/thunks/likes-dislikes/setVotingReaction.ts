@@ -1,9 +1,9 @@
 import { VotingService } from "@/services/VotingService";
 import { VotingState } from "@/store/slices/votingSlice/slice";
-import { SetVoting } from "@/types/SetVoting";
-import { StoreAsyncThunk } from "@/types/StoreAsyncThunk";
+import { SetVoting } from "@/common/types/SetVoting";
+import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
-import { StoreAsyncThunkHandler } from "@/types/StoreAsyncThunkHandler";
+import { StoreAsyncThunkHandler } from "@/common/types/StoreAsyncThunkHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const asyncThunk = createAsyncThunk("voting/set_reaction", async function (setVoting: SetVoting, { rejectWithValue }) {
@@ -14,8 +14,9 @@ const asyncThunk = createAsyncThunk("voting/set_reaction", async function (setVo
 	}
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const storeHandler: StoreAsyncThunkHandler<VotingState> = () => {};
+const storeHandler: StoreAsyncThunkHandler<VotingState> = (state, action) => {
+	state.value = action.payload.value;
+};
 
 export const setVotingReaction: StoreAsyncThunk<VotingState> = {
 	asyncThunk,

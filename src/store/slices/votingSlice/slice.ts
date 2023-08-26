@@ -1,5 +1,5 @@
-import { IFavouritesItem } from "@/types/Favourites";
-import { IReactionItem } from "@/types/ReactionItem";
+import { IFavouritesItem } from "@/common/types/Favourites";
+import { IReactionItem } from "@/common/types/ReactionItem";
 import { createSlice } from "@reduxjs/toolkit";
 import votingSliceThunks from "./thunks";
 

@@ -12,10 +12,6 @@ const VotingBlock = () => {
 			</div>
 			<div className={styles.votingLogsContainer}>
 				<VotingLogs />
-				<VotingLogs />
-				<VotingLogs />
-				<VotingLogs />
-				<VotingLogs />
 			</div>
 		</div>
 	);

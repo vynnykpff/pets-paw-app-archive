@@ -1,6 +1,9 @@
-import { FavouritesType } from "@/types/Favourites";
-import { SetVoting } from "@/types/SetVoting";
+import { FavouritesType } from "@/common/types/Favourites";
+import { SetVoting } from "@/common/types/SetVoting";
 import axios from "axios";
+
+// TODO
+// Типизация для каждого ответа с сервера
 
 export class VotingService {
 	private static votingApi = axios.create({
@@ -17,7 +20,7 @@ export class VotingService {
 	}
 
 	public static async setReaction(reaction: SetVoting) {
-		const response = await this.votingApi.post(`/votes`, {
+		const response = await this.votingApi.post("/votes", {
 			image_id: reaction.image_id,
 			value: reaction.value,
 			sub_id: reaction.sub_id,

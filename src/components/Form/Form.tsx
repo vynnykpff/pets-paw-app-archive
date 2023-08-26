@@ -2,8 +2,8 @@ import EmailIcon from "@/assets/icons/email.svg";
 import GoogleIcon from "@/assets/icons/google.svg";
 
 import PasswordIcon from "@/assets/icons/password.svg";
-import { AuthScheme } from "@/schemes/AuthScheme";
-import { IUserCredentials } from "@/types/UserCredentials";
+import { AuthScheme } from "@/common/schemes/AuthScheme";
+import { IUserCredentials } from "@/common/types/UserCredentials";
 import cn from "classnames";
 import { Formik } from "formik";
 import Link from "next/link";
@@ -31,8 +31,11 @@ const Form = ({ title, handleClick, handleGoogleLogin, route, description, authT
 	const [isFocus, setIsFocus] = useState(false);
 
 	const handleSubmit = (values: IValues) => {
-		isGoogleLogin && handleGoogleLogin();
-		!isGoogleLogin && handleClick({ email: values.email, password: values.password });
+		if (isGoogleLogin) {
+			handleGoogleLogin();
+		} else {
+			handleClick({ email: values.email, password: values.password });
+		}
 	};
 
 	return (

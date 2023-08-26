@@ -4,7 +4,7 @@ import galleryImage from "@/assets/images/gallery.png";
 import votingImage from "@/assets/images/vote.png";
 import LayoutHeader from "@/components/ui/Layout/components/LayoutHeader/LayoutHeader";
 
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/common/constants/routes";
 import cn from "classnames";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -43,6 +43,7 @@ const InitialSelectActions: FC = () => {
 					<div className={styles.cardsContainer}>
 						{data.map((card, index) => (
 							<Link href={card.route} key={index} className={styles.cardContent}>
+								{/*TODO: move it to individual component*/}
 								<div
 									className={cn(
 										styles.cardImageContainer,

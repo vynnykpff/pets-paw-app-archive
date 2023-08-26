@@ -1,9 +1,9 @@
 import { VotingService } from "@/services/VotingService";
 import { VotingState } from "@/store/slices/votingSlice/slice";
-import { FavouritesType } from "@/types/Favourites";
-import { StoreAsyncThunk } from "@/types/StoreAsyncThunk";
+import { FavouritesType } from "@/common/types/Favourites";
+import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
-import { StoreAsyncThunkHandler } from "@/types/StoreAsyncThunkHandler";
+import { StoreAsyncThunkHandler } from "@/common/types/StoreAsyncThunkHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const asyncThunk = createAsyncThunk("voting/set_favourite", async function (favouriteData: FavouritesType, { rejectWithValue }) {

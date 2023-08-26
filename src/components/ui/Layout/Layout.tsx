@@ -1,6 +1,6 @@
 import InitialSelectActions from "@/components/InitialSelectActions/InitialSelectActions";
-import { THEME } from "@/constants/theme";
-import { auth } from "@/firebase-config";
+import { THEME } from "@/common/constants/theme";
+import { auth } from "@/common/firebase-config";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { setUserId } from "@/store/slices/votingSlice/slice";

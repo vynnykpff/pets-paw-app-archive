@@ -1,5 +1,5 @@
-import { ROUTES } from "@/constants/routes";
-import { auth } from "@/firebase-config";
+import { ROUTES } from "@/common/constants/routes";
+import { auth } from "@/common/firebase-config";
 import { useRouter } from "next/router";
 import { FC, PropsWithChildren, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -11,6 +11,7 @@ export const AuthorizedRoute: FC<PropsWithChildren> = ({ children }) => {
 
 	const onMount = () => {
 		if (loading) return;
+
 		if (!user && !isAuthPath) {
 			router.push(ROUTES.login);
 		} else if (user && isAuthPath) {
@@ -19,7 +20,7 @@ export const AuthorizedRoute: FC<PropsWithChildren> = ({ children }) => {
 	};
 
 	useEffect(() => {
-		void onMount();
+		onMount();
 	}, [loading]);
 
 	return <>{loading ? <div>Loading...</div> : children}</>;

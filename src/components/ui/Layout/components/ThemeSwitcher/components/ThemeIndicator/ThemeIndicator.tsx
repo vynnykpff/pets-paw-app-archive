@@ -1,6 +1,6 @@
 import DarkIndicator from "@/assets/icons/darkIndicator.svg";
 import LightIndicator from "@/assets/icons/lightIndicator.svg";
-import { THEME } from "@/constants/theme";
+import { THEME } from "@/common/constants/theme";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import React from "react";
 import styles from "./ThemeIndicator.module.scss";

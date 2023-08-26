@@ -1,10 +1,10 @@
 import Form from "@/components/Form/Form";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
-import { ROUTES } from "@/constants/routes";
-import { auth } from "@/firebase-config";
+import { ROUTES } from "@/common/constants/routes";
+import { auth } from "@/common/firebase-config";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { setUser } from "@/store/slices/userSlice";
-import { IUserCredentials } from "@/types/UserCredentials";
+import { IUserCredentials } from "@/common/types/UserCredentials";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getIdToken, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -23,21 +23,23 @@ export const Register = () => {
 		}
 	}, [showSuccessModal]);
 
-	const handleRegister = (userData: IUserCredentials) => {
-		createUserWithEmailAndPassword(auth, userData.email, userData.password)
-			.then(async ({ user }) => {
-				const idToken = await getIdToken(user);
-				dispatch(
-					setUser({
-						email: user.email,
-						id: user.uid,
-						token: idToken,
-					}),
-				);
-				setShowErrorModal(false);
-				setShowSuccessModal(true);
-			})
-			.catch(() => <ModalNotification title={"Error signing in with Email and Password!"} typeNotification={"error"} />);
+	const handleRegister = async (userData: IUserCredentials) => {
+		try {
+			const { user } = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+			const idToken = await getIdToken(user);
+			dispatch(
+				setUser({
+					email: user.email,
+					id: user.uid,
+					token: idToken,
+				}),
+			);
+			setShowErrorModal(false);
+			setShowSuccessModal(true);
+		} catch (e) {
+			setShowSuccessModal(false);
+			setShowErrorModal(true);
+		}
 	};
 
 	const handleGoogleLogin = async () => {
@@ -76,7 +78,7 @@ export const Register = () => {
 				handleGoogleLogin={handleGoogleLogin}
 				handleClick={handleRegister}
 			/>
-			{showErrorModal && <ModalNotification title="Error signing in with Google!" typeNotification="error" />}
+			{showErrorModal && <ModalNotification title="Error signing!" typeNotification="error" />}
 			{showSuccessModal && <ModalNotification title="Registration Success!" typeNotification="success" />}
 		</>
 	);

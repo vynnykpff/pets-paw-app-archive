@@ -1,8 +1,9 @@
 import { VotingService } from "@/services/VotingService";
 import { VotingState } from "@/store/slices/votingSlice/slice";
-import { StoreAsyncThunk } from "@/types/StoreAsyncThunk";
+import { IReactionItem } from "@/common/types/ReactionItem";
+import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
-import { StoreAsyncThunkHandler } from "@/types/StoreAsyncThunkHandler";
+import { StoreAsyncThunkHandler } from "@/common/types/StoreAsyncThunkHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const asyncThunk = createAsyncThunk("voting/get_voting_reaction", async function (userId: string, { rejectWithValue }) {
@@ -24,7 +25,7 @@ interface ReactionData {
 }
 
 const storeHandler: StoreAsyncThunkHandler<VotingState> = (state, action) => {
-	const extractedData: Array<{ url: string; value: number }> = action.payload.map((item: ReactionData) => {
+	const extractedData: IReactionItem[] = action.payload.map((item: ReactionData) => {
 		return {
 			url: item.image.url,
 			value: item.value,

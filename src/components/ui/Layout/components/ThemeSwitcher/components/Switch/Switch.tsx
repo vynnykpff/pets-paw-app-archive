@@ -3,7 +3,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { useEffect } from "react";
 
 import { setTheme } from "@/store/slices/themeSlice";
-import { THEME } from "@/constants/theme";
+import { THEME } from "@/common/constants/theme";
 
 import styles from "./Switch.module.scss";
 
