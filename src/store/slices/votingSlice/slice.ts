@@ -1,7 +1,14 @@
+import { LogType } from "@/common/constants/logType";
 import { IFavouritesItem } from "@/common/types/Favourites";
 import { IReactionItem } from "@/common/types/ReactionItem";
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import votingSliceThunks from "./thunks";
+
+export interface ILog {
+	type: LogType;
+	time: string;
+	imageId: string;
+}
 
 export interface VotingState {
 	isPending: boolean;
@@ -12,6 +19,7 @@ export interface VotingState {
 	likesArray: IReactionItem[];
 	disLikesArray: IReactionItem[];
 	favouritesArray: IFavouritesItem[];
+	logs: ILog[];
 }
 
 const initialState: VotingState = {
@@ -23,6 +31,7 @@ const initialState: VotingState = {
 	likesArray: [],
 	disLikesArray: [],
 	favouritesArray: [],
+	logs: [],
 };
 
 export const votingSlice = createSlice({
@@ -32,6 +41,12 @@ export const votingSlice = createSlice({
 		setUserId: (state, action) => {
 			state.sub_id = action.payload;
 		},
+		addToLogs: (state, action: PayloadAction<ILog>) => {
+			state.logs = [action.payload, ...state.logs];
+		},
+		removeLogByImageId: (state, action: PayloadAction<string>) => {
+			state.logs = state.logs.filter(o => o.imageId !== action.payload);
+		},
 	},
 	extraReducers: builder => {
 		for (const thunk of votingSliceThunks) {
@@ -40,6 +55,6 @@ export const votingSlice = createSlice({
 	},
 });
 
-export const { setUserId } = votingSlice.actions;
+export const { setUserId, addToLogs, removeLogByImageId } = votingSlice.actions;
 
 export default votingSlice.reducer;

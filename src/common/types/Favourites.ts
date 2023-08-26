@@ -1,6 +1,6 @@
-import { SetVoting } from "@/common/types/SetVoting";
+import { VotingData } from "@/common/types/VotingData";
 
-export type FavouritesType = Omit<SetVoting, "value">;
+export type FavouritesType = Omit<VotingData, "value">;
 
 export interface IFavouritesItem {
 	id: string;

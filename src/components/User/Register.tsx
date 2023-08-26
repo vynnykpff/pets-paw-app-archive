@@ -18,7 +18,7 @@ export const Register = () => {
 	useEffect(() => {
 		if (showSuccessModal) {
 			setTimeout(() => {
-				router.push(ROUTES.home);
+				router.push(ROUTES.HOME);
 			}, 1000);
 		}
 	}, [showSuccessModal]);
@@ -74,7 +74,7 @@ export const Register = () => {
 				title="Registration"
 				description="You already have an account?"
 				authText="Sign In"
-				route={ROUTES.login}
+				route={ROUTES.LOGIN}
 				handleGoogleLogin={handleGoogleLogin}
 				handleClick={handleRegister}
 			/>
