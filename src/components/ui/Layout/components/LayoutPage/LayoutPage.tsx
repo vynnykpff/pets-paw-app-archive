@@ -1,5 +1,5 @@
 import LayoutPageHeader from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageHeader/LayoutPageHeader";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/common/constants/routes";
 import { useRouter } from "next/router";
 import { FC, PropsWithChildren } from "react";
 import styles from "./LayoutPage.module.scss";

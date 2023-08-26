@@ -1,7 +1,6 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
-import { AnyAction } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import styles from "./VotingImage.module.scss";
 
@@ -10,7 +9,7 @@ const VotingImage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getVotingImage.asyncThunk(null) as unknown as AnyAction);
+		dispatch(getVotingImage.asyncThunk(null));
 	}, []);
 
 	return (

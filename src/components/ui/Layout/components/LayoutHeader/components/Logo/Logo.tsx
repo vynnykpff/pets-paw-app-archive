@@ -1,5 +1,5 @@
 import LogoIcon from "@/assets/logo/logo.svg";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/common/constants/routes";
 import Link from "next/link";
 import styles from "./Logo.module.scss";
 

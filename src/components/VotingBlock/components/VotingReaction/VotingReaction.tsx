@@ -1,36 +1,42 @@
+import ActiveFavouriteIcon from "@/assets/icons/activeFavourite.svg";
+import DislikeIcon from "@/assets/icons/dislike.svg";
+import FavouriteIcon from "@/assets/icons/favourite.svg";
+
+import LikeIcon from "@/assets/icons/like.svg";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { setFavouriteReaction } from "@/store/slices/votingSlice/thunks/favourite/setFavouriteReaction";
 import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
-import { setVotingReaction } from "@/store/slices/votingSlice/thunks/setVotingReaction";
-import { AnyAction } from "@reduxjs/toolkit";
+import { setVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/setVotingReaction";
 import cn from "classnames";
 import { useState } from "react";
 import styles from "./VotingReaction.module.scss";
 
-import LikeIcon from "@/assets/icons/like.svg";
-import DislikeIcon from "@/assets/icons/dislike.svg";
-import FavouriteIcon from "@/assets/icons/favourite.svg";
-import ActiveFavouriteIcon from "@/assets/icons/activeFavourite.svg";
-
 const VotingReaction = () => {
 	const [isClicked, setIsClicked] = useState(false);
-	const { image_id: imageId } = useAppSelector(state => state.votingSliceReducer);
+	const { image_id: imageId, sub_id: subId } = useAppSelector(state => state.votingSliceReducer);
 	const dispatch = useAppDispatch();
 
-	const handleNextImage = () => {
-		dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value: 1, sub_id: "j7F9SBLtYRNpDNTVSVUkkdXIrjO2" }) as unknown as AnyAction);
-		dispatch(getVotingImage.asyncThunk(null) as unknown as AnyAction);
+	const handleNextImage = (value: number) => {
+		setIsClicked(false);
+		dispatch(getVotingImage.asyncThunk(null));
+		dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value, sub_id: subId }));
+	};
+
+	const handleSetFavourites = () => {
+		setIsClicked(true);
+		dispatch(setFavouriteReaction.asyncThunk({ image_id: imageId, sub_id: subId }));
 	};
 
 	return (
 		<div className={styles.votingReactionContainer}>
-			<div onClick={handleNextImage} className={cn(styles.votingReactionItem, styles.likeItem)}>
+			<div onClick={() => handleNextImage(1)} className={cn(styles.votingReactionItem, styles.likeItem)}>
 				<LikeIcon />
 			</div>
-			<div onClick={() => setIsClicked(prev => !prev)} className={cn(styles.votingReactionItem, styles.favouriteItem)}>
+			<div onClick={handleSetFavourites} className={cn(styles.votingReactionItem, styles.favouriteItem)}>
 				{isClicked ? <ActiveFavouriteIcon /> : <FavouriteIcon />}
 			</div>
-			<div onClick={handleNextImage} className={cn(styles.votingReactionItem, styles.dislikeItem)}>
+			<div onClick={() => handleNextImage(-1)} className={cn(styles.votingReactionItem, styles.dislikeItem)}>
 				<DislikeIcon />
 			</div>
 		</div>

@@ -1,14 +1,14 @@
-import { AuthScheme } from "@/schemes/AuthScheme";
-import { IUserCredentials } from "@/types/UserCredentials";
+import EmailIcon from "@/assets/icons/email.svg";
+import GoogleIcon from "@/assets/icons/google.svg";
+
+import PasswordIcon from "@/assets/icons/password.svg";
+import { AuthScheme } from "@/common/schemes/AuthScheme";
+import { IUserCredentials } from "@/common/types/UserCredentials";
 import cn from "classnames";
 import { Formik } from "formik";
 import Link from "next/link";
 import React, { useState } from "react";
 import styles from "./Form.module.scss";
-
-import PasswordIcon from "@/assets/icons/password.svg";
-import EmailIcon from "@/assets/icons/email.svg";
-import GoogleIcon from "@/assets/icons/google.svg";
 
 interface IFormProps {
 	title: string;
@@ -31,8 +31,11 @@ const Form = ({ title, handleClick, handleGoogleLogin, route, description, authT
 	const [isFocus, setIsFocus] = useState(false);
 
 	const handleSubmit = (values: IValues) => {
-		isGoogleLogin && handleGoogleLogin();
-		!isGoogleLogin && handleClick({ email: values.email, password: values.password });
+		if (isGoogleLogin) {
+			handleGoogleLogin();
+		} else {
+			handleClick({ email: values.email, password: values.password });
+		}
 	};
 
 	return (
@@ -52,7 +55,7 @@ const Form = ({ title, handleClick, handleGoogleLogin, route, description, authT
 							<label>Email</label>
 						</div>
 						<div className={cn(styles.inputForm, isFocus ? styles.activeInput : styles.inputForm)}>
-							<PasswordIcon />
+							<EmailIcon />
 							<input
 								onFocus={() => setIsFocus(true)}
 								onBlur={() => setIsFocus(false)}
@@ -68,7 +71,7 @@ const Form = ({ title, handleClick, handleGoogleLogin, route, description, authT
 							<label>Password </label>
 						</div>
 						<div className={cn(styles.inputForm, isFocus ? styles.activeInput : styles.inputForm)}>
-							<EmailIcon />
+							<PasswordIcon />
 							<input
 								onFocus={() => setIsFocus(true)}
 								onBlur={() => setIsFocus(false)}
@@ -97,22 +100,15 @@ const Form = ({ title, handleClick, handleGoogleLogin, route, description, authT
 							</Link>
 						</p>
 						<p className={cn(styles.p, styles.line)}>Or With</p>
-						<div className={styles.flexRow}>
-							<button
-								type="submit"
-								onClick={() => {
-									setIsGoogleLogin(true);
-									handleSubmit();
-								}}
-								className={cn(styles.btn, styles.google)}
-							>
-								<GoogleIcon />
-								Google
-							</button>
-						</div>
 					</>
 				)}
 			</Formik>
+			<div className={styles.flexRow}>
+				<button type="submit" onClick={handleGoogleLogin} className={cn(styles.btn, styles.google)}>
+					<GoogleIcon />
+					Google
+				</button>
+			</div>
 		</form>
 	);
 };

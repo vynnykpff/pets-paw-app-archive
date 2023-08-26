@@ -1,4 +1,4 @@
-import { THEME } from "@/constants/theme";
+import { THEME } from "@/common/constants/theme";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { FC } from "react";
 import { ToastContainer, toast } from "react-toastify";
