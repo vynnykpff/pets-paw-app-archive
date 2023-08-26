@@ -1,3 +1,4 @@
+import React from "react";
 import Logo from "@/components/ui/Layout/components/LayoutHeader/components/Logo/Logo";
 import ThemeSwitcher from "@/components/ui/Layout/components/ThemeSwitcher/ThemeSwitcher";
 import { ROUTES } from "@/common/constants/routes";
@@ -17,21 +18,23 @@ const LayoutHeader = () => {
 	};
 
 	return (
-		<header className={styles.layoutHeader}>
-			<Logo />
-			<div className={styles.actionsContainer}>
-				<ThemeSwitcher />
-				{user ? (
-					<a className={styles.authLink} onClick={handleLogOut}>
-						Logout
-					</a>
-				) : (
-					<Link className={styles.authLink} href={ROUTES.login}>
-						Login
-					</Link>
-				)}
-			</div>
-		</header>
+		<>
+			<header className={styles.layoutHeader}>
+				<Logo />
+				<div className={styles.actionsContainer}>
+					<ThemeSwitcher />
+					{user ? (
+						<a className={styles.authLink} onClick={handleLogOut}>
+							Logout
+						</a>
+					) : (
+						<Link className={styles.authLink} href={ROUTES.login}>
+							Login
+						</Link>
+					)}
+				</div>
+			</header>
+		</>
 	);
 };
 
