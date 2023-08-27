@@ -8,6 +8,20 @@
     display: flex;
     column-gap: 10px;
     margin-bottom: 20px;
+
+    .sortIcon {
+      border: 2px solid transparent;
+      transition: border .3s;
+      background-color: var(--background-primary);
+
+      &:hover {
+        svg {
+          fill: var(--background-static);
+        }
+
+        border: 2px solid var(--background-static-200);
+      }
+    }
   }
 
   .scrollContainer {

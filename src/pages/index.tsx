@@ -2,7 +2,7 @@ import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage"
 import Head from "next/head";
 import Image from "next/image";
 import { FC } from "react";
-import styles from "@/common/styles/Home.module.scss";
+import styles from "@/styles/Home.module.scss";
 
 import homeScreenImage from "@/assets/images/homeScreen.png";
 

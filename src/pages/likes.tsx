@@ -1,9 +1,13 @@
+import GridImages from "@/components/GridImages/GridImages";
 import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
+import Loader from "@/components/ui/Loader/Loader";
+import LogError from "@/components/ui/LogError/LogError";
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { getVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/getVotingReaction";
+import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
 import { FC, useEffect } from "react";
 
@@ -24,11 +28,16 @@ const Likes: FC = () => {
 			</Head>
 			<LayoutPage>
 				<LayoutPageContent>
-					{!isPending ? (
-						likesArray.map((item, index) => <img key={index} width={200} src={item.url} alt="like item" />)
-					) : (
-						<div>Loading...</div>
-					)}
+					<div className={styles.galleryContainer}>
+						{!isPending ? (
+							<>
+								<GridImages arrayImages={likesArray} />
+								{!likesArray.length && <LogError title="No item found" />}
+							</>
+						) : (
+							<Loader />
+						)}
+					</div>
 				</LayoutPageContent>
 			</LayoutPage>
 		</>

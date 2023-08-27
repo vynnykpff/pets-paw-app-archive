@@ -23,5 +23,5 @@ export const AuthorizedRoute: FC<PropsWithChildren> = ({ children }) => {
 		onMount();
 	}, [loading]);
 
-	return <>{loading ? <div>Loading...</div> : children}</>;
+	return <>{!loading && children}</>;
 };

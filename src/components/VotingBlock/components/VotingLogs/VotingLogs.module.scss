@@ -1,3 +1,10 @@
+.votingLogsContainer {
+  overflow-y: auto;
+  max-height: 260px;
+  margin-top: 45px;
+  padding-right: 10px;
+}
+
 .votingLogsContent {
   display: flex;
   justify-content: space-between;
