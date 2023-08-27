@@ -4,7 +4,7 @@ import galleryImage from "@/assets/images/gallery.png";
 import votingImage from "@/assets/images/vote.png";
 import LayoutHeader from "@/components/ui/Layout/components/LayoutHeader/LayoutHeader";
 
-import { ROUTES } from "@/common/constants/routes";
+import { Routes } from "@/common/constants/routes";
 import cn from "classnames";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -24,9 +24,9 @@ interface ICardItem {
 const InitialSelectActions: FC = () => {
 	const router = useRouter();
 	const data: ICardItem[] = [
-		{ name: "VOTING", route: ROUTES.VOTING, imageUrl: votingImage, description: "voting image", bgColor: "#B4B7FF" },
-		{ name: "BREEDS", route: ROUTES.BREEDS, imageUrl: breedsImage, description: "breeds image", bgColor: "#97EAB9" },
-		{ name: "GALLERY", route: ROUTES.GALLERY, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
+		{ name: "VOTING", route: Routes.VOTING, imageUrl: votingImage, description: "voting image", bgColor: "#B4B7FF" },
+		{ name: "BREEDS", route: Routes.BREEDS, imageUrl: breedsImage, description: "breeds image", bgColor: "#97EAB9" },
+		{ name: "GALLERY", route: Routes.GALLERY, imageUrl: galleryImage, description: "gallery image", bgColor: "#FFD280" },
 	];
 
 	return (

@@ -1,10 +1,11 @@
+import Breeds from "@/components/Breeds/Breeds";
 import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import Head from "next/head";
 import { FC } from "react";
 
-const Index: FC = () => {
+const BreedsPage: FC = () => {
 	return (
 		<>
 			<Head>
@@ -12,10 +13,12 @@ const Index: FC = () => {
 			</Head>
 
 			<LayoutPage>
-				<LayoutPageContent>Breeds</LayoutPageContent>
+				<LayoutPageContent>
+					<Breeds />
+				</LayoutPageContent>
 			</LayoutPage>
 		</>
 	);
 };
 
-export default withAuthorizedRoute(Index);
+export default withAuthorizedRoute(BreedsPage);

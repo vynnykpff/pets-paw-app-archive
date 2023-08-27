@@ -6,6 +6,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { ILog } from "@/store/slices/votingSlice/slice";
 import { FC, ReactNode } from "react";
 import styles from "./VotingLogs.module.scss";
+import { v4 as uuidv4 } from "uuid";
 
 const LogIcons: Record<LogType, ReactNode> = {
 	[LogType.ADD_TO_FAVOURITE]: <FavouriteIcon viewBox="0 0 30 30" />,
@@ -32,7 +33,7 @@ const VotingLogs: FC<Props> = ({ logs: logsFromProps }) => {
 	return (
 		<div className={styles.votingLogsContainer}>
 			{logs.map(item => (
-				<div key={item.imageId} className={styles.votingLogsContent}>
+				<div key={uuidv4()} className={styles.votingLogsContent}>
 					<div className={styles.dataContainer}>
 						<div className={styles.logTime}>{item.time}</div>
 						<div className={styles.logTitle}>

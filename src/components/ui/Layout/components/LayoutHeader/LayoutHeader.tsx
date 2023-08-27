@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "@/components/ui/Layout/components/LayoutHeader/components/Logo/Logo";
 import ThemeSwitcher from "@/components/ui/Layout/components/ThemeSwitcher/ThemeSwitcher";
-import { ROUTES } from "@/common/constants/routes";
+import { Routes } from "@/common/constants/routes";
 import { auth } from "@/common/firebase-config";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,7 +14,7 @@ const LayoutHeader = () => {
 	const router = useRouter();
 
 	const handleLogOut = () => {
-		signOut().then(() => router.push(ROUTES.HOME));
+		signOut().then(() => router.push(Routes.HOME));
 	};
 
 	return (
@@ -28,7 +28,7 @@ const LayoutHeader = () => {
 							Logout
 						</a>
 					) : (
-						<Link className={styles.authLink} href={ROUTES.LOGIN}>
+						<Link className={styles.authLink} href={Routes.LOGIN}>
 							Login
 						</Link>
 					)}

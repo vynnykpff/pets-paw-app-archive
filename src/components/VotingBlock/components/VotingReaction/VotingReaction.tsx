@@ -1,11 +1,12 @@
 import ActiveFavouriteIcon from "@/assets/icons/activeFavourite.svg";
 import DislikeIcon from "@/assets/icons/dislike.svg";
 import FavouriteIcon from "@/assets/icons/favourite.svg";
-
 import LikeIcon from "@/assets/icons/like.svg";
 import { LogType } from "@/common/constants/logType";
+import { Reaction } from "@/common/constants/reaction";
 import { FavouritesType } from "@/common/types/Favourites";
 import { getCurrentTime } from "@/common/utils/getCurrentTime";
+import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { addToLogs } from "@/store/slices/votingSlice/slice";
@@ -18,24 +19,36 @@ import styles from "./VotingReaction.module.scss";
 
 const VotingReaction = () => {
 	const [isClicked, setIsClicked] = useState(false);
-	const { image_id: imageId, sub_id: subId } = useAppSelector(state => state.votingSliceReducer);
+	const { imageId } = useAppSelector(state => state.votingSliceReducer);
+	const { userId } = useAppSelector(state => state.userSliceReducer);
+	const [showModal, setShowModal] = useState(false);
+	const [modalMessage, setModalMessage] = useState("");
 	const dispatch = useAppDispatch();
 	const addToFavouritesReactions = useRef<FavouritesType[]>([]);
 
 	const handleNextImage = (value: number) => {
-		setIsClicked(false);
-		dispatch(getVotingImage.asyncThunk(null));
-		dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value, sub_id: subId }));
+		if (value === Reaction.DISLIKE) {
+			setShowModal(true);
+			setModalMessage("successfully added to Dislikes");
+		} else {
+			setShowModal(true);
+			setModalMessage("successfully added to Likes");
+		}
+
+		setTimeout(() => {
+			setIsClicked(false);
+			dispatch(getVotingImage.asyncThunk(null));
+			dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value, sub_id: userId }));
+		}, 1200);
 	};
 
 	const handleSetFavourites = () => {
 		if (isClicked) {
-			addToFavouritesReactions.current = addToFavouritesReactions.current.filter(i => i.image_id !== imageId && i.sub_id !== subId);
+			addToFavouritesReactions.current = addToFavouritesReactions.current.filter(i => i.image_id !== imageId && i.sub_id !== userId);
 			setIsClicked(false);
 			dispatch(addToLogs({ type: LogType.REMOVE_FROM_FAVOURITE, imageId, time: getCurrentTime() }));
 		} else {
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			addToFavouritesReactions.current.push({ image_id: imageId, sub_id: subId! });
+			addToFavouritesReactions.current.push({ image_id: imageId, sub_id: userId });
 			setIsClicked(true);
 			dispatch(addToLogs({ type: LogType.ADD_TO_FAVOURITE, imageId, time: getCurrentTime() }));
 		}
@@ -44,23 +57,26 @@ const VotingReaction = () => {
 	useEffect(() => {
 		return () => {
 			for (const reaction of addToFavouritesReactions.current) {
-				dispatch(setFavouriteReaction.asyncThunk({ image_id: reaction.image_id, sub_id: reaction.sub_id }));
+				dispatch(setFavouriteReaction.asyncThunk({ image_id: reaction.image_id, sub_id: userId }));
 			}
 		};
 	}, []);
 
 	return (
-		<div className={styles.votingReactionContainer}>
-			<div onClick={() => handleNextImage(1)} className={cn(styles.votingReactionItem, styles.likeItem)}>
-				<LikeIcon />
+		<>
+			<div className={styles.votingReactionContainer}>
+				<div onClick={() => handleNextImage(1)} className={cn(styles.votingReactionItem, styles.likeItem)}>
+					<LikeIcon />
+				</div>
+				<div onClick={handleSetFavourites} className={cn(styles.votingReactionItem, styles.favouriteItem)}>
+					{isClicked ? <ActiveFavouriteIcon /> : <FavouriteIcon />}
+				</div>
+				<div onClick={() => handleNextImage(-1)} className={cn(styles.votingReactionItem, styles.dislikeItem)}>
+					<DislikeIcon />
+				</div>
 			</div>
-			<div onClick={handleSetFavourites} className={cn(styles.votingReactionItem, styles.favouriteItem)}>
-				{isClicked ? <ActiveFavouriteIcon /> : <FavouriteIcon />}
-			</div>
-			<div onClick={() => handleNextImage(-1)} className={cn(styles.votingReactionItem, styles.dislikeItem)}>
-				<DislikeIcon />
-			</div>
-		</div>
+			{showModal && <ModalNotification title={modalMessage} typeNotification={"success"} />}
+		</>
 	);
 };
 

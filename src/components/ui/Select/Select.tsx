@@ -1,12 +1,20 @@
+import SelectArrow from "@/assets/icons/selectArrow.svg";
+import { getVariantProperty } from "@/components/ui/Select/utils/getVariantProperty";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import styles from "./Select.module.scss";
-import SelectArrow from "@/assets/icons/selectArrow.svg";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
+
+export interface VariantObject {
+	text: string;
+	value: string;
+}
+
+export type Variant = string | VariantObject;
 
 interface ISelect {
 	currentState: string;
-	setCurrentState: Dispatch<SetStateAction<ISelect["currentState"]>>;
-	variants: string[];
+	setCurrentState: Dispatch<SetStateAction<ISelect["currentState"]>> | ((val: ISelect["currentState"]) => void);
+	variants: Variant[];
 	maxWidth?: string;
 	minWidth?: string;
 }
@@ -16,20 +24,26 @@ const Select: FC<ISelect> = ({ currentState, setCurrentState, variants, maxWidth
 	const containerRef = useOutsideClick<HTMLDivElement>(() => {
 		setVariantsVisible(false);
 	});
+	const filteredVariants = variants.filter(v => getVariantProperty(v, "value") !== currentState);
 
-	const filteredVariants = variants.filter(v => v !== currentState);
+	const [currentVariant, setCurrentVariant] = useState<Variant>(variants[0]);
+
+	const setValue = (val: Variant) => {
+		setCurrentVariant(val);
+		setCurrentState(getVariantProperty(val, "value"));
+	};
 
 	return (
 		<div ref={containerRef} style={{ maxWidth: maxWidth, minWidth: minWidth }} className={styles.selectContainer}>
 			<div onClick={() => setVariantsVisible(!variantsVisible)} className={styles.selectedVariant}>
-				<span>{currentState}</span>
+				<span>{getVariantProperty(currentVariant, "text")}</span>
 				<SelectArrow className={styles.arrowIcon} data-active={variantsVisible} />
 			</div>
 			{variantsVisible && (
 				<div onClick={() => setVariantsVisible(false)} className={styles.selectVariantsContainer}>
 					{filteredVariants.map((variant, key) => (
-						<span onClick={() => setCurrentState(variant)} key={key}>
-							{variant}
+						<span onClick={() => setValue(variant)} key={key}>
+							{getVariantProperty(variant, "text")}
 						</span>
 					))}
 				</div>

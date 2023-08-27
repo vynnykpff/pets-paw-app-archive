@@ -1,6 +1,6 @@
 import SearchField from "@/components/ui/SearchField/SearchField";
 import HeaderPageNavItem from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageHeader/components/HeaderPageNavItem/HeaderPageNavItem";
-import { ROUTES } from "@/common/constants/routes";
+import { Routes } from "@/common/constants/routes";
 import { INavItem } from "@/common/types/NavItem";
 import styles from "./LayoutPageHeader.module.scss";
 
@@ -10,9 +10,9 @@ import FavouritesIcon from "@/assets/icons/favourite.svg";
 
 const LayoutPageHeader = () => {
 	const data: INavItem[] = [
-		{ route: ROUTES.LIKES, NavIcon: LikeIcon },
-		{ route: ROUTES.FAVOURITES, NavIcon: FavouritesIcon },
-		{ route: ROUTES.DISLIKES, NavIcon: DislikeIcon },
+		{ route: Routes.LIKES, NavIcon: LikeIcon },
+		{ route: Routes.FAVOURITES, NavIcon: FavouritesIcon },
+		{ route: Routes.DISLIKES, NavIcon: DislikeIcon },
 	];
 
 	return (

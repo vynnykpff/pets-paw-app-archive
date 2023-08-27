@@ -1,11 +1,11 @@
+import { Routes } from "@/common/constants/routes";
+import { auth } from "@/common/firebase-config";
+import { IUserCredentials } from "@/common/types/UserCredentials";
 import Form from "@/components/Form/Form";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
-import { ROUTES } from "@/common/constants/routes";
-import { auth } from "@/common/firebase-config";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { setUser } from "@/store/slices/userSlice";
-import { IUserCredentials } from "@/common/types/UserCredentials";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getIdToken, signInWithPopup } from "firebase/auth";
+import { setUserId } from "@/store/slices/userSlice";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -18,7 +18,7 @@ export const Register = () => {
 	useEffect(() => {
 		if (showSuccessModal) {
 			setTimeout(() => {
-				router.push(ROUTES.HOME);
+				router.push(Routes.HOME);
 			}, 1000);
 		}
 	}, [showSuccessModal]);
@@ -26,12 +26,9 @@ export const Register = () => {
 	const handleRegister = async (userData: IUserCredentials) => {
 		try {
 			const { user } = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-			const idToken = await getIdToken(user);
 			dispatch(
-				setUser({
-					email: user.email,
-					id: user.uid,
-					token: idToken,
+				setUserId({
+					userId: user.uid,
 				}),
 			);
 			setShowErrorModal(false);
@@ -49,16 +46,11 @@ export const Register = () => {
 			const user = result.user;
 
 			if (user) {
-				const idToken = await getIdToken(user);
-
 				dispatch(
-					setUser({
-						email: user.email,
-						id: user.uid,
-						token: idToken,
+					setUserId({
+						userId: user.uid,
 					}),
 				);
-
 				setShowErrorModal(false);
 				setShowSuccessModal(true);
 			}
@@ -74,7 +66,7 @@ export const Register = () => {
 				title="Registration"
 				description="You already have an account?"
 				authText="Sign In"
-				route={ROUTES.LOGIN}
+				route={Routes.LOGIN}
 				handleGoogleLogin={handleGoogleLogin}
 				handleClick={handleRegister}
 			/>

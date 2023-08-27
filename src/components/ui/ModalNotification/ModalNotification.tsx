@@ -1,4 +1,4 @@
-import { THEME } from "@/common/constants/theme";
+import { Theme } from "@/common/constants/theme";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { FC } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -24,7 +24,7 @@ const ModalNotification: FC<{ title: string; typeNotification: NotificationType 
 				draggable
 				pauseOnHover
 				style={{ color: "green" }}
-				theme={theme === "light" ? THEME.LIGHT : THEME.DARK}
+				theme={theme === "light" ? Theme.LIGHT : Theme.DARK}
 			/>
 		</div>
 	);

@@ -1,11 +1,11 @@
+import { Routes } from "@/common/constants/routes";
+import { auth } from "@/common/firebase-config";
+import { IUserCredentials } from "@/common/types/UserCredentials";
 import Form from "@/components/Form/Form";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
-import { ROUTES } from "@/common/constants/routes";
-import { auth } from "@/common/firebase-config";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { setUser } from "@/store/slices/userSlice";
-import { IUserCredentials } from "@/common/types/UserCredentials";
-import { GoogleAuthProvider, getIdToken, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { setUserId } from "@/store/slices/userSlice";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -18,7 +18,7 @@ export const Login = () => {
 	useEffect(() => {
 		if (showSuccessModal) {
 			setTimeout(() => {
-				router.push(ROUTES.HOME);
+				router.push(Routes.HOME);
 			}, 1000);
 		}
 	}, [showSuccessModal]);
@@ -26,12 +26,9 @@ export const Login = () => {
 	const handleLogin = async (userData: IUserCredentials) => {
 		try {
 			const { user } = await signInWithEmailAndPassword(auth, userData.email, userData.password);
-			const idToken = await getIdToken(user);
 			dispatch(
-				setUser({
-					email: user.email,
-					id: user.uid,
-					token: idToken,
+				setUserId({
+					userId: user.uid,
 				}),
 			);
 			setShowErrorModal(false);
@@ -47,12 +44,9 @@ export const Login = () => {
 			const result = await signInWithPopup(auth, provider);
 			const user = result.user;
 			if (user) {
-				const idToken = await getIdToken(user);
 				dispatch(
-					setUser({
-						email: user.email,
-						id: user.uid,
-						token: idToken,
+					setUserId({
+						userId: user.uid,
 					}),
 				);
 				setShowErrorModal(false);
@@ -70,7 +64,7 @@ export const Login = () => {
 				title="Sign In"
 				description="Don't have an account?"
 				authText="Registration"
-				route={ROUTES.REGISTRATION}
+				route={Routes.REGISTRATION}
 				handleGoogleLogin={handleGoogleLogin}
 				handleClick={handleLogin}
 			/>

@@ -13,13 +13,14 @@ import { FC, useEffect } from "react";
 
 const Likes: FC = () => {
 	const dispatch = useAppDispatch();
-	const { sub_id: subId, likesArray, isPending } = useAppSelector(state => state.votingSliceReducer);
+	const { likesArray, isPending } = useAppSelector(state => state.votingSliceReducer);
+	const { userId } = useAppSelector(state => state.userSliceReducer);
 
 	useEffect(() => {
-		if (subId) {
-			dispatch(getVotingReaction.asyncThunk(subId));
+		if (userId) {
+			dispatch(getVotingReaction.asyncThunk(userId));
 		}
-	}, [subId]);
+	}, [userId]);
 
 	return (
 		<>

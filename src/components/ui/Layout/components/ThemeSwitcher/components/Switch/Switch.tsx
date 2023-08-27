@@ -3,7 +3,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { useEffect } from "react";
 
 import { setTheme } from "@/store/slices/themeSlice";
-import { THEME } from "@/common/constants/theme";
+import { Theme } from "@/common/constants/theme";
 
 import styles from "./Switch.module.scss";
 
@@ -12,7 +12,7 @@ const Switch = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		const currentTheme = localStorage.getItem("theme") || THEME.LIGHT;
+		const currentTheme = localStorage.getItem("theme") || Theme.LIGHT;
 		dispatch(setTheme(currentTheme));
 	}, []);
 
@@ -21,13 +21,13 @@ const Switch = () => {
 	}, [theme]);
 
 	const onChangeTheme = () => {
-		dispatch(setTheme(theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT));
+		dispatch(setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT));
 	};
 
 	return (
 		<div className={styles.toggleSwitch}>
 			<label className={styles.switchLabel}>
-				<input checked={theme !== THEME.LIGHT} onChange={onChangeTheme} type="checkbox" className={styles.checkbox} />
+				<input checked={theme !== Theme.LIGHT} onChange={onChangeTheme} type="checkbox" className={styles.checkbox} />
 				<span className={styles.slider}></span>
 			</label>
 		</div>
