@@ -26,6 +26,7 @@ export const Login = () => {
 	const handleLogin = async (userData: IUserCredentials) => {
 		try {
 			const { user } = await signInWithEmailAndPassword(auth, userData.email, userData.password);
+
 			dispatch(
 				setUserId({
 					userId: user.uid,
