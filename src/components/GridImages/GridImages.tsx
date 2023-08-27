@@ -19,17 +19,13 @@ const GridImages: FC<Props> = ({ arrayImages: images, children, isHoverAble = fa
 	const arrayImages = [...images].reverse();
 	return (
 		<>
-			{Array(Math.ceil(arrayImages.length / 5))
-				.fill(null)
-				.map((gallery, galleryIndex) => (
-					<GalleryGrid key={uuidv4()} reversed={!!(galleryIndex % 2)}>
-						{arrayImages.slice(galleryIndex * 5, (galleryIndex + 1) * 5).map(image => (
-							<ReactionCard key={uuidv4()} imageUrl={image.url} isHoverAble={isHoverAble}>
-								{(children ?? (() => <></>))(image)}
-							</ReactionCard>
-						))}
-					</GalleryGrid>
+			<GalleryGrid key={uuidv4()}>
+				{arrayImages.map(image => (
+					<ReactionCard key={uuidv4()} imageUrl={image.url} isHoverAble={isHoverAble}>
+						{(children ?? (() => <></>))(image)}
+					</ReactionCard>
 				))}
+			</GalleryGrid>
 		</>
 	);
 };

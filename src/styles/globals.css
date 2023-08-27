@@ -15,6 +15,7 @@ html {
 
 :root {
 	--background-static: #FF868E;
+	--background-static-200: #FBE0DC;
 	--background-default: #FFFFFF;
 }
 
@@ -23,23 +24,27 @@ html {
 	--background-primary-200: #FBE0DC;
 	--background-primary-100: #FFFFFF;
 	--background-secondary: #fff;
+	--background-secondary-300: #fff;
 	--background-secondary-200: #FBE0DC;
 	--background-secondary-100: #F8F8F7;
 
 	--text-primary: #1D1D1D;
 	--text-secondary: #8C8C8C;
+	--text-secondary-contrast: #a0a0a0;
 }
 
 :root[data-theme="dark"] {
 	--background-primary: #1D1D1D;
 	--background-primary-100: #1D1D1D;
-	--background-primary-200: rgba(255, 134, 142, 0.20);
-	--background-secondary: rgba(255, 255, 255, 0.05);
-	--background-secondary-200: rgba(255, 255, 255, 0.05);
+	--background-primary-200: #6e4345;
+	--background-secondary: #292929;
+	--background-secondary-300: #2c2c2c;
+	--background-secondary-200: #292929;
 	--background-secondary-100: rgba(255, 255, 255, 0.05);
 
 	--text-primary: #FFFFFF;
 	--text-secondary: #8C8C8C;
+	--text-secondary-contrast: #a0a0a0;
 }
 
 body {

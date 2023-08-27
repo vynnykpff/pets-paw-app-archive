@@ -1,23 +1,21 @@
 .button {
   background-color: var(--background-primary-200);
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: color .3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
-    transition: all .3s ease;
+    transition: color .3s ease;
     background-color: var(--background-static);
 
     svg {
       fill: var(--background-default);
     }
-
   }
-
 }
