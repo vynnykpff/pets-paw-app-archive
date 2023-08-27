@@ -5,6 +5,7 @@ import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/comp
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import Loader from "@/components/ui/Loader/Loader";
 import LogError from "@/components/ui/LogError/LogError";
+import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
 import VotingLogs from "@/components/VotingBlock/components/VotingLogs/VotingLogs";
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
@@ -13,21 +14,23 @@ import { deleteFavouriteItem } from "@/store/slices/votingSlice/thunks/favourite
 import { getFavouritesItems } from "@/store/slices/votingSlice/thunks/favourite/getFavouritesItems";
 import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 const Favourites: FC = () => {
 	const dispatch = useAppDispatch();
-	const { sub_id: subId, favouritesArray, isPending, logs } = useAppSelector(state => state.votingSliceReducer);
+	const { favouritesArray, isPending, logs } = useAppSelector(state => state.votingSliceReducer);
+	const { userId } = useAppSelector(state => state.userSliceReducer);
+	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
-		if (subId) {
-			dispatch(getFavouritesItems.asyncThunk(subId));
+		if (userId) {
+			dispatch(getFavouritesItems.asyncThunk(userId));
 		}
-	}, [subId]);
+	}, [userId]);
 
 	useEffect(() => {
-		if (subId && logs.length && logs[0].type === LogType.REMOVE_FROM_FAVOURITE) {
-			dispatch(getFavouritesItems.asyncThunk(subId));
+		if (userId && logs.length && logs[0].type === LogType.REMOVE_FROM_FAVOURITE) {
+			dispatch(getFavouritesItems.asyncThunk(userId));
 		}
 	}, [logs]);
 
@@ -35,7 +38,11 @@ const Favourites: FC = () => {
 		if (id === undefined) {
 			return;
 		}
-		dispatch(deleteFavouriteItem.asyncThunk(id));
+		setShowModal(true);
+		setTimeout(() => {
+			setShowModal(false);
+			dispatch(deleteFavouriteItem.asyncThunk(id));
+		}, 1200);
 	};
 
 	const filteredLogs = logs.filter(o => o.type === LogType.REMOVE_FROM_FAVOURITE);
@@ -65,6 +72,7 @@ const Favourites: FC = () => {
 						)}
 					</div>
 				</LayoutPageContent>
+				{showModal && <ModalNotification title="Successfully deleted!" typeNotification={"success"} />}
 			</LayoutPage>
 		</>
 	);

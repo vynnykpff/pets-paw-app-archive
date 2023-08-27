@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  cursor: pointer;
 
   .selectedVariant {
     padding: 10px;
@@ -34,6 +35,7 @@
 
   .selectVariantsContainer {
     position: absolute;
+    z-index: 2;
     top: calc(100% + 10px);
     width: 100%;
     background-color: var(--background-secondary-300);
@@ -44,6 +46,9 @@
     border-radius: 10px;
     min-height: 50px;
     padding: 10px;
+    max-height: 210px;
+    overflow-y: auto;
+
 
     span {
       display: flex;

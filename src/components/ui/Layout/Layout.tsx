@@ -1,9 +1,9 @@
-import InitialSelectActions from "@/components/InitialSelectActions/InitialSelectActions";
-import { THEME } from "@/common/constants/theme";
+import { Theme } from "@/common/constants/theme";
 import { auth } from "@/common/firebase-config";
+import InitialSelectActions from "@/components/InitialSelectActions/InitialSelectActions";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { setUserId } from "@/store/slices/votingSlice/slice";
+import { setUserId } from "@/store/slices/userSlice";
 import { FC, PropsWithChildren, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./Layout.module.scss";
@@ -21,7 +21,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		if (localStorage.getItem("theme")) {
-			document.documentElement.dataset.theme = localStorage.getItem("theme") ?? THEME.LIGHT;
+			document.documentElement.dataset.theme = localStorage.getItem("theme") ?? Theme.LIGHT;
 		} else {
 			localStorage.setItem("theme", theme);
 		}

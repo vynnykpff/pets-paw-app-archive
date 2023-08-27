@@ -5,7 +5,7 @@ const Loader = () => {
 		<Oval
 			height={80}
 			width={80}
-			color="#4fa94d"
+			color="var(--background-static)"
 			wrapperStyle={{
 				display: "flex",
 				justifyContent: "center",
@@ -14,8 +14,8 @@ const Loader = () => {
 			wrapperClass=""
 			visible={true}
 			ariaLabel="oval-loading"
-			secondaryColor="#4fa94d"
-			strokeWidth={2}
+			secondaryColor="var(--background-primary)"
+			strokeWidth={3}
 			strokeWidthSecondary={2}
 		/>
 	);

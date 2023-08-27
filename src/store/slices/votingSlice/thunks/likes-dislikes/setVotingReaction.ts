@@ -16,7 +16,7 @@ const asyncThunk = createAsyncThunk("voting/set_reaction", async function (votin
 });
 
 const storeHandler: StoreAsyncThunkHandler<VotingState> = (state, action) => {
-	state.value = action.payload.value;
+	state.imageStatus = action.payload.value;
 	state.logs = [
 		{ type: action.payload.value === 1 ? LogType.LIKE : LogType.DISLIKE, imageId: action.payload.image_id, time: getCurrentTime() },
 		...state.logs,

@@ -1,16 +1,32 @@
+import Loader from "@/components/ui/Loader/Loader";
 import VotingImage from "@/components/VotingBlock/components/VotingImage/VotingImage";
 import VotingLogs from "@/components/VotingBlock/components/VotingLogs/VotingLogs";
 import VotingReaction from "@/components/VotingBlock/components/VotingReaction/VotingReaction";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
+import { useEffect } from "react";
 import styles from "./VotingBlock.module.scss";
 
 const VotingBlock = () => {
-	const { logs } = useAppSelector(state => state.votingSliceReducer);
+	const { logs, isPending } = useAppSelector(state => state.votingSliceReducer);
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getVotingImage.asyncThunk(null));
+	}, []);
+
 	return (
 		<div className={styles.votingContainer}>
 			<div className={styles.votingBlock}>
-				<VotingImage />
-				<VotingReaction />
+				{!isPending ? (
+					<>
+						<VotingImage />
+						<VotingReaction />
+					</>
+				) : (
+					<Loader />
+				)}
 			</div>
 			{logs.length > 0 && <VotingLogs />}
 		</div>

@@ -12,25 +12,29 @@ export interface ILog {
 
 export interface VotingState {
 	isPending: boolean;
-	image_id: string;
-	sub_id?: string | null;
-	url: string;
-	value: number;
+
+	imageId: string;
+	imageUrl: string;
+	imageStatus: number;
+
 	likesArray: IReactionItem[];
 	disLikesArray: IReactionItem[];
 	favouritesArray: IFavouritesItem[];
+
 	logs: ILog[];
 }
 
 const initialState: VotingState = {
 	isPending: true,
-	image_id: "",
-	sub_id: null,
-	url: "",
-	value: 0,
+
+	imageId: "",
+	imageUrl: "",
+	imageStatus: 0,
+
 	likesArray: [],
 	disLikesArray: [],
 	favouritesArray: [],
+
 	logs: [],
 };
 
@@ -38,9 +42,6 @@ export const votingSlice = createSlice({
 	name: "voting",
 	initialState,
 	reducers: {
-		setUserId: (state, action) => {
-			state.sub_id = action.payload;
-		},
 		addToLogs: (state, action: PayloadAction<ILog>) => {
 			state.logs = [action.payload, ...state.logs];
 		},
@@ -50,11 +51,14 @@ export const votingSlice = createSlice({
 	},
 	extraReducers: builder => {
 		for (const thunk of votingSliceThunks) {
+			builder.addCase(thunk.asyncThunk.pending, state => {
+				state.isPending = true;
+			});
 			builder.addCase(thunk.asyncThunk.fulfilled, thunk.storeHandler);
 		}
 	},
 });
 
-export const { setUserId, addToLogs, removeLogByImageId } = votingSlice.actions;
+export const { addToLogs, removeLogByImageId } = votingSlice.actions;
 
 export default votingSlice.reducer;

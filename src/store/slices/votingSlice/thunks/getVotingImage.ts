@@ -1,8 +1,8 @@
-import { VotingService } from "@/services/VotingService";
-import { VotingState } from "@/store/slices/votingSlice/slice";
+import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
 import { StoreAsyncThunkHandler } from "@/common/types/StoreAsyncThunkHandler";
-import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
+import { VotingService } from "@/services/VotingService";
+import { VotingState } from "@/store/slices/votingSlice/slice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const asyncThunk = createAsyncThunk("voting/get_image", async function (arg, { rejectWithValue }) {
@@ -14,8 +14,8 @@ const asyncThunk = createAsyncThunk("voting/get_image", async function (arg, { r
 });
 
 const storeHandler: StoreAsyncThunkHandler<VotingState> = (state, action) => {
-	state.image_id = action.payload.id;
-	state.url = action.payload.url;
+	state.imageId = action.payload.id;
+	state.imageUrl = action.payload.url;
 	state.isPending = false;
 };
 
