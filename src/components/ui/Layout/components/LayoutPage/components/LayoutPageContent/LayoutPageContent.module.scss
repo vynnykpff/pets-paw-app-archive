@@ -6,8 +6,14 @@
 
   .pageNavigate {
     display: flex;
+    justify-content: space-between;
     column-gap: 10px;
     margin-bottom: 20px;
+
+    .navigateButtonsContainer {
+      display: flex;
+      column-gap: 10px;
+    }
 
     .sortIcon {
       border: 2px solid transparent;
@@ -20,6 +26,29 @@
         }
 
         border: 2px solid var(--background-static-200);
+      }
+    }
+
+    .uploadButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background-color: var(--background-static-200);
+      padding: 12px 30px;
+      font-weight: 500;
+      color: var(--background-static);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+      column-gap: 10px;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
+
+      svg {
       }
     }
   }

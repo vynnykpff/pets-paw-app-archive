@@ -17,9 +17,10 @@ interface ISelect {
 	variants: Variant[];
 	maxWidth?: string;
 	minWidth?: string;
+	bgColor?: string;
 }
 
-const Select: FC<ISelect> = ({ currentState, setCurrentState, variants, maxWidth, minWidth }) => {
+const Select: FC<ISelect> = ({ currentState, setCurrentState, variants, maxWidth, minWidth, bgColor }) => {
 	const [variantsVisible, setVariantsVisible] = useState<boolean>(false);
 	const containerRef = useOutsideClick<HTMLDivElement>(() => {
 		setVariantsVisible(false);
@@ -35,7 +36,7 @@ const Select: FC<ISelect> = ({ currentState, setCurrentState, variants, maxWidth
 
 	return (
 		<div ref={containerRef} style={{ maxWidth: maxWidth, minWidth: minWidth }} className={styles.selectContainer}>
-			<div onClick={() => setVariantsVisible(!variantsVisible)} className={styles.selectedVariant}>
+			<div style={{background: bgColor}} onClick={() => setVariantsVisible(!variantsVisible)} className={styles.selectedVariant}>
 				<span>{getVariantProperty(currentVariant, "text")}</span>
 				<SelectArrow className={styles.arrowIcon} data-active={variantsVisible} />
 			</div>
