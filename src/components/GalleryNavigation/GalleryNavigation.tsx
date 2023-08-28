@@ -1,21 +1,19 @@
-import styles from "./GalleryNavigation.module.scss";
+import React, {useState} from "react";
 import Select, {Variant} from "@/components/ui/Select/Select";
-import {useState} from "react";
 import {getVariantProperty} from "@/components/ui/Select/utils/getVariantProperty";
 import {useAppSelector} from "@/hooks/useAppSelector";
 import Button from "@/components/ui/Button/Button";
 import SendRequestIcon from "@/assets/icons/reload.svg";
+import styles from "./GalleryNavigation.module.scss";
 
 const orderVariants: Variant[] = [
-	{text: "Random", value: `${(Math.random() * (1 + 1)) ? "DESC" : "ASC"}`},
+	{text: "Random", value: `${Math.random() * (1 + 1) ? "DESC" : "ASC"}`},
 	{text: "Desc", value: "DESC"},
 	{text: "Asc", value: "ASC"},
 ];
 
-
-// TODO: Check value in API
 const typeVariants: Variant[] = [
-	{text: "All", value: `${(Math.random() * (1 + 1)) ? "DESC" : "ASC"}`},
+	{text: "All", value: `${Math.random() * (1 + 1) ? "DESC" : "ASC"}`},
 	{text: "Static", value: "DESC"},
 	{text: "Animated", value: "ASC"},
 ];
@@ -28,7 +26,7 @@ const limitVariants: Variant[] = [
 ];
 
 const GalleryNavigation = () => {
-	const {breedsNames} = useAppSelector(state => state.breedsSliceReducer);
+	const {breedsNames} = useAppSelector((state) => state.breedsSliceReducer);
 	const breedsVariants: Variant[] = [{text: "None", value: " "}, ...breedsNames];
 
 	const [currentOrderState, setCurrentOrderState] = useState(getVariantProperty(orderVariants[0], "value"));
@@ -36,29 +34,34 @@ const GalleryNavigation = () => {
 	const [currentTypeState, setCurrentTypeState] = useState(getVariantProperty(typeVariants[0], "value"));
 	const [currentLimitState, setCurrentLimitState] = useState(getVariantProperty(limitVariants[0], "value"));
 
-
 	return (
 		<div className={styles.galleryNavigationContainer}>
 			<div style={{width: "100%"}}>
 				<div className={styles.navigationBlock}>
 					<label className={styles.selectLabel}>Order</label>
-					<Select bgColor="var(--background-primary-100)" currentState={currentOrderState} setCurrentState={setCurrentOrderState} variants={orderVariants}/>
+					<Select bgColor="var(--background-primary-100)" currentState={currentOrderState}
+					        setCurrentState={setCurrentOrderState} variants={orderVariants}/>
 				</div>
 				<div className={styles.navigationBlock}>
 					<label className={styles.selectLabel}>Breed</label>
-					<Select bgColor="var(--background-primary-100)" currentState={currentBreedState} setCurrentState={setCurrentBreedState} variants={breedsVariants}/>
+					<Select bgColor="var(--background-primary-100)" currentState={currentBreedState}
+					        setCurrentState={setCurrentBreedState} variants={breedsVariants}/>
 				</div>
 			</div>
 			<div style={{width: "100%"}}>
 				<div className={styles.navigationBlock}>
 					<label className={styles.selectLabel}>Type</label>
-					<Select bgColor="var(--background-primary-100)" currentState={currentTypeState} setCurrentState={setCurrentTypeState} variants={typeVariants}/>
+					<Select bgColor="var(--background-primary-100)" currentState={currentTypeState}
+					        setCurrentState={setCurrentTypeState} variants={typeVariants}/>
 				</div>
 				<div className={styles.navigationBlock}>
 					<label className={styles.selectLabel}>Limit</label>
 					<div className={styles.additionalNavigationBlock}>
-						<Select bgColor="var(--background-primary-100)" curentState={currentLimitState} setCurrentState={setCurrentLimitState} variants={limitVariants}/>
-						<Button><SendRequestIcon/></Button>
+						<Select bgColor="var(--background-primary-100)" currentState={currentLimitState}
+						        setCurrentState={setCurrentLimitState} variants={limitVariants}/>
+						<Button>
+							<SendRequestIcon/>
+						</Button>
 					</div>
 				</div>
 			</div>
