@@ -1,0 +1,11 @@
+.searchRequestContainer {
+  padding-bottom: 20px;
+  .searchRequestTitle {
+    color: var(--text-secondary);
+    font-size: 20px;
+    span {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+  }
+}
