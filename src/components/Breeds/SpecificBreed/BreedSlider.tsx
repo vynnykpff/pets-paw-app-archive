@@ -20,10 +20,10 @@ const BreedSlider: FC<Props> = ({urls}) => {
       else setSlideIndex(prev => prev + 1);
     }
   }
-  const handleTouchStart = (event) => {
+  const handleTouchStart = (event:any) => {
     touchStartX.current = event.touches[0].clientX;
   };
-  const handleTouchEnd = (event) => {
+  const handleTouchEnd = (event:any) => {
     console.log(event)
     if (touchStartX.current !== null) {
       const touchEndX = event.changedTouches[0].clientX;
