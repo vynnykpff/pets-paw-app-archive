@@ -94,7 +94,7 @@ const LayoutPageContent: FC<PropsWithChildren> = ({children}) => {
 					</>
 				)}
 				{router.pathname === Routes.GALLERY && (
-					<Button className={styles.uploadButton}><UploadIcon/> <span>Upload</span></Button>
+					<Button onClick={() => router.push("/upload")} className={styles.uploadButton}><UploadIcon/> <span>Upload</span></Button>
 				)}
 			</div>
 			<div className={styles.scrollContainer}>{children}</div>

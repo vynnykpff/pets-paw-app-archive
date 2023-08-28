@@ -1,0 +1,41 @@
+.container{
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 2px solid var(--background-primary-200);
+  min-height: 240px;
+  .breedName{
+    position: absolute;
+    top: -15px;
+    left:50%;
+    transform: translateX(-50%);
+    color: var(--text-primary);
+    font-weight: 500;
+    background-color: var(--background-secondary);
+    min-width: 200px;
+    text-align: center;
+    z-index: 2;
+  }
+  .breedInfoContainer{
+    min-height: 240px;
+    display: flex;
+    justify-content: center;
+    column-gap: 40px;
+    align-items: center;
+    div{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      h4{
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+      span {
+        font-weight: 500;
+        color : #8C8C8C;
+      }
+    }
+  }
+}
