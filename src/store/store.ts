@@ -5,6 +5,7 @@ import breedsSliceReducer from "./slices/breedsSlice/slice";
 import themeSliceReducer from "./slices/themeSlice";
 import userSliceReducer from "./slices/userSlice";
 import votingSliceReducer from "./slices/votingSlice/slice";
+import searchSliceReducer from "./slices/searchSlice";
 
 export const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
 		votingSliceReducer,
 		userSliceReducer,
 		breedsSliceReducer,
+		searchSliceReducer,
 	},
 	middleware: [thunk],
 });
