@@ -2,9 +2,6 @@ import { FavouritesType } from "@/common/types/Favourites";
 import { VotingData } from "@/common/types/VotingData";
 import { catApi } from "@/services/api";
 
-// TODO
-// Типизация для каждого ответа с сервера
-
 export class VotingService {
 	public static async getImage() {
 		const response = await catApi.get("/images/search");

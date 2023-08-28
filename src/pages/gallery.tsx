@@ -14,8 +14,6 @@ import {deleteFavouriteItem} from "@/store/slices/votingSlice/thunks/favourite/d
 import {useAppDispatch} from "@/hooks/useAppDispatch";
 
 const Gallery: FC = () => {
-	// const {breedsNames} = useAppSelector(state => state.breedsSliceReducer);
-	// const breedsVariants: Variant[] = [{text: "None", value: " "}, ...breedsNames];
 	const {favouritesArray, isPending} = useAppSelector(state => state.votingSliceReducer);
 	const dispatch = useAppDispatch();
 	const handleRemoveFavouriteItem = (id: string | undefined) => {

@@ -18,7 +18,6 @@ interface Props {
 }
 
 const GridImages: FC<Props> = ({ arrayImages: images, children, isHoverAble = false }) => {
-	// console.log(images);
 	const arrayImages = [...images].reverse();
 	return (
 		<>
