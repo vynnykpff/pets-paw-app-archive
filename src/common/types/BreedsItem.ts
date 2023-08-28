@@ -10,6 +10,7 @@ interface CatWeight {
 export interface BreedsCurrentImage {
 	breed: string;
 	limit: string;
+	page: number;
 }
 
 interface BreedsData {

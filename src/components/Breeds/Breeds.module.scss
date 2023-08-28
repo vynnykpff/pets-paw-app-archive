@@ -1,0 +1,18 @@
+.buttonContainer {
+  width: 100%;
+  background-color: var(--background-primary-100);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin-top: 70px;
+
+  .breedsIcon {
+    color: var(--background-static);
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
