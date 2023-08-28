@@ -1,6 +1,7 @@
 import ArrowIcon from "@/assets/icons/arrow.svg";
 import AscIcon from "@/assets/icons/asc.svg";
 import DescIcon from "@/assets/icons/desc.svg";
+import UploadIcon from "@/assets/icons/upload.svg";
 import {Routes} from "@/common/constants/routes";
 import Button from "@/components/ui/Button/Button";
 import CurrentPath
@@ -62,10 +63,12 @@ const LayoutPageContent: FC<PropsWithChildren> = ({children}) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.pageNavigate}>
-				<Button onClick={() => router.back()}>
-					<ArrowIcon/>
-				</Button>
-				<CurrentPath path={path}/>
+				<div className={styles.navigateButtonsContainer}>
+					<Button onClick={() => router.back()}>
+						<ArrowIcon/>
+					</Button>
+					<CurrentPath path={path}/>
+				</div>
 				{router.pathname === Routes.BREEDS && (
 					<>
 						<Select
@@ -89,6 +92,9 @@ const LayoutPageContent: FC<PropsWithChildren> = ({children}) => {
 							<AscIcon/>
 						</Button>
 					</>
+				)}
+				{router.pathname === Routes.GALLERY && (
+					<Button className={styles.uploadButton}><UploadIcon/> <span>Upload</span></Button>
 				)}
 			</div>
 			<div className={styles.scrollContainer}>{children}</div>

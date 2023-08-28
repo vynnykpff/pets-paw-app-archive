@@ -15,17 +15,17 @@
 
 ## **Technologies**
 
-### Frontend part:
-
 - [HTML](https://html.spec.whatwg.org/multipage/)
 - [CSS](https://www.w3.org/Style/CSS/)
-- [JavaScript](https://www.javascript.com/)
+- [SCSS](https://sass-lang.com/)
+- [normalize.css](https://necolas.github.io/normalize.css/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org/)
 - [React](https://react.dev/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Redux Persist](https://www.npmjs.com/package/redux-persist)
 - [Axios](https://axios-http.com/)
-- [normalize.css](https://necolas.github.io/normalize.css/)
+- [Formik](https://formik.org/)
+- [Firebase](https://firebase.google.com/)
 
 ## **Using**
 

@@ -1,20 +1,21 @@
 import FavouriteIcon from "@/assets/icons/fillFavourite.svg";
-import { LogType } from "@/common/constants/logType";
+import {LogType} from "@/common/constants/logType";
 import GridImages from "@/components/GridImages/GridImages";
-import LayoutPageContent from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
+import LayoutPageContent
+	from "@/components/ui/Layout/components/LayoutPage/components/LayoutPageContent/LayoutPageContent";
 import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage";
 import Loader from "@/components/ui/Loader/Loader";
 import LogError from "@/components/ui/LogError/LogError";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
 import VotingLogs from "@/components/VotingBlock/components/VotingLogs/VotingLogs";
-import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useAppSelector } from "@/hooks/useAppSelector";
-import { deleteFavouriteItem } from "@/store/slices/votingSlice/thunks/favourite/deleteFavouriteItem";
-import { getFavouritesItems } from "@/store/slices/votingSlice/thunks/favourite/getFavouritesItems";
+import {withAuthorizedRoute} from "@/HOCs/withAuthorizedRoute";
+import {useAppDispatch} from "@/hooks/useAppDispatch";
+import {useAppSelector} from "@/hooks/useAppSelector";
+import {deleteFavouriteItem} from "@/store/slices/votingSlice/thunks/favourite/deleteFavouriteItem";
+import {getFavouritesItems} from "@/store/slices/votingSlice/thunks/favourite/getFavouritesItems";
 import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
-import { FC, useEffect, useState } from "react";
+import {FC, useEffect, useState} from "react";
 
 const Favourites: FC = () => {
 	const dispatch = useAppDispatch();

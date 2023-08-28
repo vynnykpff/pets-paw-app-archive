@@ -1,7 +1,7 @@
-import { IBreedsItem } from "@/common/types/BreedsItem";
-import { sortAsc } from "@/common/utils/sortAsc";
-import { sortDesc } from "@/common/utils/sortDesc";
-import { createSlice } from "@reduxjs/toolkit";
+import {IBreedsItem} from "@/common/types/BreedsItem";
+import {sortAsc} from "@/common/utils/sortAsc";
+import {sortDesc} from "@/common/utils/sortDesc";
+import {createSlice} from "@reduxjs/toolkit";
 import breedsSliceThunks from "./thunks";
 
 export interface BreedsState {
@@ -13,7 +13,7 @@ export interface BreedsState {
 	breedName: string;
 	breedsNames: string[];
 	breedsLimit: string;
-
+	galleryData: IBreedsItem[];
 	hasMoreBreeds: boolean;
 
 	catTemperament: string;
@@ -27,6 +27,8 @@ const initialState: BreedsState = {
 
 	breedsData: [],
 	breedsNames: [],
+
+	galleryData: [],
 
 	hasMoreBreeds: true,
 
@@ -66,6 +68,6 @@ export const breedsSlice = createSlice({
 	},
 });
 
-export const { setSortAsc, setSortDesc, setBreedLimit } = breedsSlice.actions;
+export const {setSortAsc, setSortDesc, setBreedLimit} = breedsSlice.actions;
 
 export default breedsSlice.reducer;

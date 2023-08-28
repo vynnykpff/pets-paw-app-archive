@@ -13,4 +13,9 @@ export class BreedsService {
 		}
 		return null;
 	}
+
+	public static async getGalleryData(order: string, breedIds: string, subId: string, limit: string = "10") {
+		const response = await catApi.get(`/images/search?breed_ids=${breedIds}&limit=${limit}&order=${order}&sub_id=${subId}`);
+		return response.data;
+	}
 }
