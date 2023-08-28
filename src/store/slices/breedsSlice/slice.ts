@@ -32,7 +32,6 @@ const initialState: BreedsState = {
 
 	hasMoreBreeds: true,
 
-	// Single Cat
 	breedId: "",
 	breedName: "",
 	breedImage: "",

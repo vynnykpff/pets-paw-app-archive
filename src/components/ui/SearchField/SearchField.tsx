@@ -54,7 +54,7 @@ const SearchField = () => {
 				placeholder="Search for breeds by name"
 				className={styles.searchInput}
 				type="text"
-				onKeyDown={handleKeyPress} // Add this line
+				onKeyDown={handleKeyPress}
 			/>
 			<div onClick={handleFiltered} className={styles.iconContainer}>
 				<SearchIcon />

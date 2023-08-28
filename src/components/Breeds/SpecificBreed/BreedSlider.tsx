@@ -27,7 +27,7 @@ const BreedSlider: FC<Props> = ({urls}) => {
 
 	};
 	const handleTouchEnd = (event: React.TouchEvent<HTMLImageElement>): void => {
-		if (touchStartX.current !== null) { // Делаем проверку на null перед использованием
+		if (touchStartX.current !== null) {
 			const touchEndX = event.changedTouches[0].clientX;
 			const deltaX = touchEndX - touchStartX.current;
 

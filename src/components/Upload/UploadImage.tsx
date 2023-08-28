@@ -7,8 +7,8 @@ import styles from "./Upload.module.scss";
 const UploadImage: FC = () => {
 	const [user] = useAuthState(auth);
 
-	const [image, setImage] = useState<string | null>(null); // Укажите тип для image
-	const [result, setResult] = useState<any[]>([]); // Укажите более точный тип для result
+	const [image, setImage] = useState<string | null>(null);
+	const [result, setResult] = useState<any[]>([]);
 
 	const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		const selectedFile = e.target.files?.[0];
