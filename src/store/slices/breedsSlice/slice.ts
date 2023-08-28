@@ -14,6 +14,8 @@ export interface BreedsState {
 	breedsNames: string[];
 	breedsLimit: string;
 
+	hasMoreBreeds: boolean;
+
 	catTemperament: string;
 	catOrigin: string;
 	catWeight: string;
@@ -25,6 +27,8 @@ const initialState: BreedsState = {
 
 	breedsData: [],
 	breedsNames: [],
+
+	hasMoreBreeds: true,
 
 	// Single Cat
 	breedId: "",
