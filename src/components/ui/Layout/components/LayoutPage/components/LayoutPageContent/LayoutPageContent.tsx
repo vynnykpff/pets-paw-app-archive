@@ -1,6 +1,5 @@
 import ArrowIcon from "@/assets/icons/arrow.svg";
 import AscIcon from "@/assets/icons/asc.svg";
-import ReloadIcon from "@/assets/icons/reload.svg";
 import DescIcon from "@/assets/icons/desc.svg";
 import {Routes} from "@/common/constants/routes";
 import Button from "@/components/ui/Button/Button";
@@ -27,12 +26,11 @@ const limitVariants: Variant[] = [
 const LayoutPageContent: FC<PropsWithChildren> = ({children}) => {
 	const router = useRouter();
 	const [path, setPath] = useState("");
-	const {breedsNames, breedsData, hasMoreBreeds} = useAppSelector(state => state.breedsSliceReducer);
+	const {breedsNames, breedsData} = useAppSelector(state => state.breedsSliceReducer);
 	const breedsVariants: Variant[] = [{text: "All breeds", value: " "}, ...breedsNames];
 	const [currentBreedsState, setCurrentBreedsState] = useState(getVariantProperty(breedsVariants[0], "value"));
 	const [currentLimitState, setCurrentLimitState] = useState(getVariantProperty(limitVariants[0], "value"));
 	const dispatch = useAppDispatch();
-	const [page, setPage] = useState(0);
 
 	const getCurrentPagePath = () => {
 		const pagePath = router.pathname.split("/")[1].toUpperCase();
