@@ -7,13 +7,13 @@ import { getVotingReaction } from "@/store/slices/votingSlice/thunks/likes-disli
 import { setVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/setVotingReaction";
 import { StoreAsyncThunk } from "@/common/types/StoreAsyncThunk";
 
-const thunks: Array<StoreAsyncThunk<VotingState>> = [
-	getVotingImage,
-	getVotingReaction,
-	setVotingReaction,
-	setFavouriteReaction,
-	getFavouritesItems,
-	deleteFavouriteItem,
+const thunks: StoreAsyncThunk<VotingState>[] = [
+  getVotingImage,
+  getVotingReaction,
+  setVotingReaction,
+  setFavouriteReaction,
+  getFavouritesItems,
+  deleteFavouriteItem,
 ];
 
 export default thunks;

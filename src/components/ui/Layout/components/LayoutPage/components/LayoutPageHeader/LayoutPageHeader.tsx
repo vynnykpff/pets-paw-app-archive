@@ -9,22 +9,22 @@ import DislikeIcon from "@/assets/icons/dislike.svg";
 import FavouritesIcon from "@/assets/icons/favourite.svg";
 
 const LayoutPageHeader = () => {
-	const data: INavItem[] = [
-		{ route: Routes.LIKES, NavIcon: LikeIcon },
-		{ route: Routes.FAVOURITES, NavIcon: FavouritesIcon },
-		{ route: Routes.DISLIKES, NavIcon: DislikeIcon },
-	];
+  const data: INavItem[] = [
+    { route: Routes.LIKES, NavIcon: LikeIcon },
+    { route: Routes.FAVOURITES, NavIcon: FavouritesIcon },
+    { route: Routes.DISLIKES, NavIcon: DislikeIcon },
+  ];
 
-	return (
-		<header className={styles.headerContainer}>
-			<SearchField />
-			<div className={styles.navItemsContainer}>
-				{data.map((item, index) => (
-					<HeaderPageNavItem key={index} {...item} />
-				))}
-			</div>
-		</header>
-	);
+  return (
+    <header className={styles.headerContainer}>
+      <SearchField />
+      <div className={styles.navItemsContainer}>
+        {data.map((item, index) => (
+          <HeaderPageNavItem key={index} {...item} />
+        ))}
+      </div>
+    </header>
+  );
 };
 
 export default LayoutPageHeader;

@@ -6,8 +6,8 @@ import React from "react";
 import styles from "./ThemeIndicator.module.scss";
 
 const ThemeIndicator = () => {
-	const theme = useAppSelector(state => state.themeSliceReducer);
-	return <div className={styles.indicatorCircle}>{theme === Theme.LIGHT ? <LightIndicator /> : <DarkIndicator />}</div>;
+  const theme = useAppSelector(state => state.themeSliceReducer);
+  return <div className={styles.indicatorCircle}>{theme === Theme.LIGHT ? <LightIndicator /> : <DarkIndicator />}</div>;
 };
 
 export default ThemeIndicator;

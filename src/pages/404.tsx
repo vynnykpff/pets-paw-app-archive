@@ -4,16 +4,16 @@ import { FC } from "react";
 import styles from "@/styles/NotFound.module.scss";
 
 const NotFound: FC = () => {
-	return (
-		<>
-			<Head>
-				<title>Not Found - PetsPaw</title>
-			</Head>
-			<LayoutPage>
-				<h1 className={styles.notFoundTitle}>404 - Page Not Found</h1>
-			</LayoutPage>
-		</>
-	);
+  return (
+    <>
+      <Head>
+        <title>Not Found - PetsPaw</title>
+      </Head>
+      <LayoutPage>
+        <h1 className={styles.notFoundTitle}>404 - Page Not Found</h1>
+      </LayoutPage>
+    </>
+  );
 };
 
 export default NotFound;

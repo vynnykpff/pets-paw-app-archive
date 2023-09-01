@@ -3,12 +3,12 @@ import ThemeIndicator from "@/components/ui/Layout/components/ThemeSwitcher/comp
 import styles from "./ThemeSwitcher.module.scss";
 
 const ThemeSwitcher = () => {
-	return (
-		<div className={styles.themeSwitcherContainer}>
-			<ThemeIndicator />
-			<Switch />
-		</div>
-	);
+  return (
+    <div className={styles.themeSwitcherContainer}>
+      <ThemeIndicator />
+      <Switch />
+    </div>
+  );
 };
 
 export default ThemeSwitcher;

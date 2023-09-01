@@ -7,18 +7,18 @@ import styles from "@/styles/Home.module.scss";
 import homeScreenImage from "@/assets/images/homeScreen.png";
 
 const Home: FC = () => {
-	return (
-		<>
-			<Head>
-				<title>Home - PetsPaw</title>
-			</Head>
-			<LayoutPage>
-				<div className={styles.homeScreen}>
-					<Image priority={true} className={styles.homeImage} src={homeScreenImage} alt="" />
-				</div>
-			</LayoutPage>
-		</>
-	);
+  return (
+    <>
+      <Head>
+        <title>Home - PetsPaw</title>
+      </Head>
+      <LayoutPage>
+        <div className={styles.homeScreen}>
+          <Image priority={true} className={styles.homeImage} src={homeScreenImage} alt="" />
+        </div>
+      </LayoutPage>
+    </>
+  );
 };
 
 export default Home;

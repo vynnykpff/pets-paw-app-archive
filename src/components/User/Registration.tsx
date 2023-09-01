@@ -6,30 +6,30 @@ import Form from "@/components/Form/Form";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
 import { useState } from "react";
 
-export const Login = () => {
+export const Registration = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
 
-  const handleLogin = async (userData: UserCredentials): Promise<void> => {
+  const handleRegister = async (userData: UserCredentials): Promise<void> => {
     const response = await setEmailProviderAuth(userData);
     setShowErrorModal(response);
   };
 
   const handleGoogleAuth = async (): Promise<void> => {
     const response = await setGoogleAuth();
-    setShowErrorModal(!response);
+    setShowErrorModal(response);
   };
 
   return (
     <>
       <Form
-        title="Sign In"
-        description="Don't have an account?"
-        authText="Registration"
-        route={Routes.REGISTRATION}
+        title="Registration"
+        description="You already have an account?"
+        authText="Sign In"
+        route={Routes.LOGIN}
         handleGoogleAuth={handleGoogleAuth}
-        handleClick={handleLogin}
+        handleClick={handleRegister}
       />
-      {showErrorModal && <ModalNotification title="Error authorization" typeNotification="error" />}
+      {showErrorModal && <ModalNotification title="Error signing!" typeNotification="error" />}
     </>
   );
 };

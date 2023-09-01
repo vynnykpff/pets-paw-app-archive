@@ -1,8 +1,8 @@
-import { VotingData } from "@/common/types/VotingData";
+import { Voting } from "@/common/types/Voting";
 
-export type FavouritesType = Omit<VotingData, "value">;
+export type FavouritesType = Omit<Voting, "value">;
 
 export interface IFavouritesItem {
-	id: string;
-	url: string;
+  id: string;
+  url: string;
 }

@@ -12,36 +12,36 @@ import Head from "next/head";
 import { FC, useEffect } from "react";
 
 const Dislikes: FC = () => {
-	const dispatch = useAppDispatch();
-	const { disLikesArray, isPending } = useAppSelector(state => state.votingSliceReducer);
-	const { userId } = useAppSelector(state => state.userSliceReducer);
+  const dispatch = useAppDispatch();
+  const { disLikesArray, isPending } = useAppSelector(state => state.votingSliceReducer);
+  const { userId } = useAppSelector(state => state.userSliceReducer);
 
-	useEffect(() => {
-		if (userId) {
-			dispatch(getVotingReaction.asyncThunk(userId));
-		}
-	}, [userId]);
-	return (
-		<>
-			<Head>
-				<title>Dislikes - PetsPaw</title>
-			</Head>
-			<LayoutPage>
-				<LayoutPageContent>
-					<div className={styles.galleryContainer}>
-						{!isPending ? (
-							<>
-								<GridImages arrayImages={disLikesArray} />
-								{!disLikesArray.length && <LogError title="No item found" />}
-							</>
-						) : (
-							<Loader />
-						)}
-					</div>
-				</LayoutPageContent>
-			</LayoutPage>
-		</>
-	);
+  useEffect(() => {
+    if (userId) {
+      dispatch(getVotingReaction.asyncThunk(userId));
+    }
+  }, [userId]);
+  return (
+    <>
+      <Head>
+        <title>Dislikes - PetsPaw</title>
+      </Head>
+      <LayoutPage>
+        <LayoutPageContent>
+          <div className={styles.galleryContainer}>
+            {!isPending ? (
+              <>
+                <GridImages arrayImages={disLikesArray} />
+                {!disLikesArray.length && <LogError title="No item found" />}
+              </>
+            ) : (
+              <Loader />
+            )}
+          </div>
+        </LayoutPageContent>
+      </LayoutPage>
+    </>
+  );
 };
 
 export default withAuthorizedRoute(Dislikes);

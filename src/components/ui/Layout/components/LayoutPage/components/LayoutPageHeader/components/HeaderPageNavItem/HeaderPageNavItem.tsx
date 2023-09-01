@@ -6,18 +6,18 @@ import { FC } from "react";
 import styles from "./HeaderPageNavItem.module.scss";
 
 const HeaderPageNavItem: FC<INavItem> = ({ route, NavIcon }) => {
-	const router = useRouter();
+  const router = useRouter();
 
-	return (
-		<Link
-			className={cn(styles.navIconContainer, router.pathname === route ? styles.navActiveIconContainer : styles.navIconContainer)}
-			href={route}
-		>
-			<div className={cn(styles.icon, router.pathname === route ? styles.iconActive : styles.icon)}>
-				<NavIcon />
-			</div>
-		</Link>
-	);
+  return (
+    <Link
+      className={cn(styles.navIconContainer, router.pathname === route ? styles.navActiveIconContainer : styles.navIconContainer)}
+      href={route}
+    >
+      <div className={cn(styles.icon, router.pathname === route ? styles.iconActive : styles.icon)}>
+        <NavIcon />
+      </div>
+    </Link>
+  );
 };
 
 export default HeaderPageNavItem;
