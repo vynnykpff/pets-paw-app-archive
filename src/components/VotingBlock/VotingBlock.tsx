@@ -9,28 +9,28 @@ import { useEffect } from "react";
 import styles from "./VotingBlock.module.scss";
 
 const VotingBlock = () => {
-	const { logs, isPending } = useAppSelector(state => state.votingSliceReducer);
-	const dispatch = useAppDispatch();
+  const { logs, isPending } = useAppSelector(state => state.votingSliceReducer);
+  const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		dispatch(getVotingImage.asyncThunk(null));
-	}, []);
+  useEffect(() => {
+    dispatch(getVotingImage.asyncThunk(null));
+  }, []);
 
-	return (
-		<div className={styles.votingContainer}>
-			<div className={styles.votingBlock}>
-				{!isPending ? (
-					<>
-						<VotingImage />
-						<VotingReaction />
-					</>
-				) : (
-					<Loader />
-				)}
-			</div>
-			{logs.length > 0 && <VotingLogs />}
-		</div>
-	);
+  return (
+    <div className={styles.votingContainer}>
+      <div className={styles.votingBlock}>
+        {!isPending ? (
+          <>
+            <VotingImage />
+            <VotingReaction />
+          </>
+        ) : (
+          <Loader />
+        )}
+      </div>
+      {logs.length > 0 && <VotingLogs />}
+    </div>
+  );
 };
 
 export default VotingBlock;

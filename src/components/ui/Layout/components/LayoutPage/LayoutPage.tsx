@@ -5,19 +5,19 @@ import { FC, PropsWithChildren } from "react";
 import styles from "./LayoutPage.module.scss";
 
 const LayoutPage: FC<PropsWithChildren> = ({ children }) => {
-	const router = useRouter();
-	const isContentVisible = router.pathname !== Routes.HOME;
+  const router = useRouter();
+  const isContentVisible = router.pathname !== Routes.HOME;
 
-	return (
-		<div className={styles.container}>
-			{isContentVisible && (
-				<>
-					<LayoutPageHeader />
-				</>
-			)}
-			{children}
-		</div>
-	);
+  return (
+    <div className={styles.container}>
+      {isContentVisible && (
+        <>
+          <LayoutPageHeader />
+        </>
+      )}
+      {children}
+    </div>
+  );
 };
 
 export default LayoutPage;

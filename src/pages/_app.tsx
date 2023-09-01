@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function App({ Component, pageProps }: AppProps) {
-	return (
-		<Provider store={store}>
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
+  );
 }

@@ -6,19 +6,19 @@ import Head from "next/head";
 import { FC } from "react";
 
 const BreedsPage: FC = () => {
-	return (
-		<>
-			<Head>
-				<title>Breeds - PetsPaw</title>
-			</Head>
+  return (
+    <>
+      <Head>
+        <title>Breeds - PetsPaw</title>
+      </Head>
 
-			<LayoutPage>
-				<LayoutPageContent>
-					<Breeds />
-				</LayoutPageContent>
-			</LayoutPage>
-		</>
-	);
+      <LayoutPage>
+        <LayoutPageContent>
+          <Breeds />
+        </LayoutPageContent>
+      </LayoutPage>
+    </>
+  );
 };
 
 export default withAuthorizedRoute(BreedsPage);

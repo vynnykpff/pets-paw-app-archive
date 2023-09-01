@@ -6,18 +6,18 @@ import Head from "next/head";
 import { FC } from "react";
 
 const Voting: FC = () => {
-	return (
-		<>
-			<Head>
-				<title>Voting - PetsPaw</title>
-			</Head>
-			<LayoutPage>
-				<LayoutPageContent>
-					<VotingBlock />
-				</LayoutPageContent>
-			</LayoutPage>
-		</>
-	);
+  return (
+    <>
+      <Head>
+        <title>Voting - PetsPaw</title>
+      </Head>
+      <LayoutPage>
+        <LayoutPageContent>
+          <VotingBlock />
+        </LayoutPageContent>
+      </LayoutPage>
+    </>
+  );
 };
 
 export default withAuthorizedRoute(Voting);
