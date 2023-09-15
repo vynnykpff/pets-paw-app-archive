@@ -6,7 +6,7 @@ import LogError from "@/components/ui/LogError/LogError";
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { getVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/getVotingReaction";
+import { getReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/getReaction";
 import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
 import { FC, useEffect } from "react";
@@ -18,7 +18,7 @@ const Likes: FC = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(getVotingReaction.asyncThunk(userId));
+      dispatch(getReaction.asyncThunk(userId));
     }
   }, [userId]);
 

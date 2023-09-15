@@ -10,8 +10,8 @@ import VotingLogs from "@/components/VotingBlock/components/VotingLogs/VotingLog
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { deleteFavouriteItem } from "@/store/slices/votingSlice/thunks/favourite/deleteFavouriteItem";
-import { getFavouritesItems } from "@/store/slices/votingSlice/thunks/favourite/getFavouritesItems";
+import { deleteFavourite } from "@/store/slices/votingSlice/thunks/favourite/deleteFavourite";
+import { getFavourites } from "@/store/slices/votingSlice/thunks/favourite/getFavourites";
 import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
 import { FC, useEffect, useState } from "react";
@@ -24,13 +24,13 @@ const Favourites: FC = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(getFavouritesItems.asyncThunk(userId));
+      dispatch(getFavourites.asyncThunk(userId));
     }
   }, [userId]);
 
   useEffect(() => {
     if (userId && logs.length && logs[0].type === LogType.REMOVE_FROM_FAVOURITE) {
-      dispatch(getFavouritesItems.asyncThunk(userId));
+      dispatch(getFavourites.asyncThunk(userId));
     }
   }, [logs]);
 
@@ -41,7 +41,7 @@ const Favourites: FC = () => {
     setShowModal(true);
     setTimeout(() => {
       setShowModal(false);
-      dispatch(deleteFavouriteItem.asyncThunk(id));
+      dispatch(deleteFavourite.asyncThunk(id));
     }, 1200);
   };
 

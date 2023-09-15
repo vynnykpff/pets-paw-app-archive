@@ -4,7 +4,7 @@ import VotingLogs from "@/components/VotingBlock/components/VotingLogs/VotingLog
 import VotingReaction from "@/components/VotingBlock/components/VotingReaction/VotingReaction";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
+import { getImage } from "@/store/slices/votingSlice/thunks/getImage";
 import { useEffect } from "react";
 import styles from "./VotingBlock.module.scss";
 
@@ -13,7 +13,7 @@ const VotingBlock = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getVotingImage.asyncThunk(null));
+    dispatch(getImage.asyncThunk(null));
   }, []);
 
   return (
