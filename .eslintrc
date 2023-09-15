@@ -77,6 +77,9 @@
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-extraneous-class": "off",
     "@typescript-eslint/no-empty-interface": [
       "error",
       {
@@ -95,7 +98,7 @@
         "selector": "enum"
       },
       {
-        "format": ["camelCase", "PascalCase"],
+        "format": ["camelCase"],
         "selector": ["classMethod", "classProperty", "parameter", "variable"]
       },
       {
@@ -104,18 +107,8 @@
       },
       {
         "format": ["PascalCase"],
-        "selector": ["class", "interface"]
-      },
-      {
-        "format": ["PascalCase", "UPPER_CASE"],
-        "selector": ["enumMember"]
+        "selector": ["class", "interface", "enumMember"]
       }
-    ],
-    "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/consistent-type-definitions": "off",
-    "react/display-name": "off",
-    "@typescript-eslint/no-unsafe-enum-comparison": "off",
-    "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/no-extraneous-class": "off"
+    ]
   }
 }

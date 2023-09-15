@@ -1,17 +1,15 @@
 import { CatImageType } from "@/common/types/Breeds";
-import { FavouritesType } from "@/common/types/Favourites";
-import { Voting } from "@/common/types/Voting";
+import { VotingData } from "@/common/types/Voting";
 import { catApi } from "@/services/api";
-import { AxiosResponse } from "axios";
 
 export class VotingService {
-  // TODO: fix error with typing
+  // TODO: replace CatImageType on another type
   public static async getImage(): Promise<CatImageType> {
-    const response: AxiosResponse<CatImageType[]> = await catApi.get("/images/search");
+    const response = await catApi.get<CatImageType[]>("/images/search");
     return response.data[0];
   }
 
-  public static async setReaction(reaction: Voting): Promise<void> {
+  public static async setReaction(reaction: VotingData): Promise<void> {
     await catApi.post("/votes", {
       image_id: reaction.image_id,
       value: reaction.value,
@@ -19,20 +17,20 @@ export class VotingService {
     });
   }
 
-  public static async getVotingReaction(userId: string): Promise<Voting[]> {
-    const response: AxiosResponse<Voting[]> = await catApi.get(`/votes?sub_id=${userId}`);
+  public static async getReaction(userId: string): Promise<VotingData[]> {
+    const response = await catApi.get<VotingData[]>(`/votes?sub_id=${userId}`);
     return response.data;
   }
 
-  public static async setFavourites(favouriteData: FavouritesType): Promise<void> {
+  public static async setFavourites(favouriteData: VotingData): Promise<void> {
     await catApi.post("/favourites", {
       image_id: favouriteData.image_id,
       sub_id: favouriteData.sub_id,
     });
   }
 
-  public static async getFavourites(userId: string): Promise<FavouritesType[]> {
-    const response: AxiosResponse<FavouritesType[]> = await catApi.get(`/favourites?sub_id=${userId}`);
+  public static async getFavourites(userId: string): Promise<VotingData[]> {
+    const response = await catApi.get<VotingData[]>(`/favourites?sub_id=${userId}`);
     return response.data;
   }
 

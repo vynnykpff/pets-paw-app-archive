@@ -1,28 +1,12 @@
 import { Log } from "@/common/types/Logs";
-import { ReactionStatus } from "@/common/types/Voting";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import votingSliceThunks from "./thunks";
-
-export interface VotingState {
-  isPending: boolean;
-  imageId: string;
-  imageUrl: string;
-
-  imageStatus: number;
-
-  likes: ReactionStatus[];
-  disLikes: ReactionStatus[];
-  favourites: ReactionStatus[];
-  logs: Log[];
-}
+import { VotingState } from "@/common/types/Voting";
+import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { thunks } from "./thunks";
 
 const initialState: VotingState = {
   isPending: false,
   imageId: "",
   imageUrl: "",
-
-  imageStatus: 0,
-
   likes: [],
   disLikes: [],
   favourites: [],
@@ -38,11 +22,11 @@ export const votingSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    for (const thunk of votingSliceThunks) {
+    for (const thunk of thunks) {
       builder.addCase(thunk.asyncThunk.pending, state => {
         state.isPending = true;
       });
-      builder.addCase(thunk.asyncThunk.fulfilled, thunk.storeHandler);
+      builder.addCase(thunk.asyncThunk.fulfilled, thunk.storeHandler as CaseReducer);
     }
   },
 });

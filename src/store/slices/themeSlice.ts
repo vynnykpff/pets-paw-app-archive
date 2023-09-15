@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = Theme.LIGHT;
 
+// TODO: add preference user theme
 export const themeSlice = createSlice({
   name: "theme",
   initialState,

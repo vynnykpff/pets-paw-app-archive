@@ -61,6 +61,14 @@ body {
 	height: 3px;
 }
 
+
+/*Primary Color: #FF5733 (Vibrant Orange)*/
+/*Secondary Color: #41B3A3 (Teal)*/
+/*Background Color: #FFFFFF (White)*/
+/*Accent Color: #FFC300 (Yellow)*/
+/*Text Color (Dark on Light): #333333 (Dark Gray)*/
+/*Text Color (Light on Light): #777777 (Light Gray)*/
+
 ::-webkit-scrollbar-thumb {
 	background-color: var(--background-static);
 	border-radius: 20px;

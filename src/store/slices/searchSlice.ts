@@ -10,7 +10,7 @@ const initialState: SearchState = {
   searchValue: [],
   inputValue: "",
 };
-
+// TODO: refactor search slice
 const searchSlice = createSlice({
   name: "search",
   initialState,

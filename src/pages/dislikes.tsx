@@ -4,23 +4,15 @@ import LayoutPage from "@/components/ui/Layout/components/LayoutPage/LayoutPage"
 import Loader from "@/components/ui/Loader/Loader";
 import LogError from "@/components/ui/LogError/LogError";
 import { withAuthorizedRoute } from "@/HOCs/withAuthorizedRoute";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { getVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/getVotingReaction";
 import styles from "@/styles/Reaction.module.scss";
 import Head from "next/head";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
+// TODO: Change naming functions to Pascal_Case, e.x. DislikesPage
 const Dislikes: FC = () => {
-  const dispatch = useAppDispatch();
-  const { disLikesArray, isPending } = useAppSelector(state => state.votingSliceReducer);
-  const { userId } = useAppSelector(state => state.userSliceReducer);
+  const { disLikes, isPending } = useAppSelector(state => state.votingSliceReducer);
 
-  useEffect(() => {
-    if (userId) {
-      dispatch(getVotingReaction.asyncThunk(userId));
-    }
-  }, [userId]);
   return (
     <>
       <Head>
@@ -31,8 +23,8 @@ const Dislikes: FC = () => {
           <div className={styles.galleryContainer}>
             {!isPending ? (
               <>
-                <GridImages arrayImages={disLikesArray} />
-                {!disLikesArray.length && <LogError title="No item found" />}
+                <GridImages arrayImages={disLikes} />
+                {!disLikes.length && <LogError title="No item found" />}
               </>
             ) : (
               <Loader />

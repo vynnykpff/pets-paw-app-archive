@@ -9,7 +9,7 @@ import GridImages from "@/components/GridImages/GridImages";
 import FavouriteIcon from "@/assets/icons/fillFavourite.svg";
 import Loader from "@/components/ui/Loader/Loader";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { deleteFavouriteItem } from "@/store/slices/votingSlice/thunks/favourite/deleteFavouriteItem";
+import { deleteFavourite } from "@/store/slices/votingSlice/thunks/favourite/deleteFavourite";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 
 const Gallery: FC = () => {
@@ -19,7 +19,7 @@ const Gallery: FC = () => {
     if (id === undefined) {
       return;
     }
-    dispatch(deleteFavouriteItem.asyncThunk(id));
+    dispatch(deleteFavourite.asyncThunk(id));
   };
 
   return (

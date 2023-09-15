@@ -3,31 +3,33 @@ import DislikeIcon from "@/assets/icons/dislike.svg";
 import FavouriteIcon from "@/assets/icons/favourite.svg";
 import LikeIcon from "@/assets/icons/like.svg";
 import { LogType } from "@/common/constants/logType";
-import { Reaction } from "@/common/constants/reaction";
-import { FavouritesType } from "@/common/types/Favourites";
 import { getCurrentTime } from "@/common/utils/getCurrentTime";
 import ModalNotification from "@/components/ui/ModalNotification/ModalNotification";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { addToLogs } from "@/store/slices/votingSlice/slice";
-import { setFavouriteReaction } from "@/store/slices/votingSlice/thunks/favourite/setFavouriteReaction";
-import { getVotingImage } from "@/store/slices/votingSlice/thunks/getVotingImage";
-import { setVotingReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/setVotingReaction";
+import { setFavourite } from "@/store/slices/votingSlice/thunks/favourite/setFavourite";
+import { getImage } from "@/store/slices/votingSlice/thunks/getImage";
+import { setReaction } from "@/store/slices/votingSlice/thunks/likes-dislikes/setReaction";
 import cn from "classnames";
+import firebase from "firebase/compat";
 import { useEffect, useRef, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./VotingReaction.module.scss";
+import auth = firebase.auth;
 
 const VotingReaction = () => {
   const [isClicked, setIsClicked] = useState(false);
   const { imageId } = useAppSelector(state => state.votingSliceReducer);
-  const { userId } = useAppSelector(state => state.userSliceReducer);
+  // const { userId } = useAppSelector(state => state.userSliceReducer);
+  const [user, loading, error] = useAuthState(auth);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const dispatch = useAppDispatch();
-  const addToFavouritesReactions = useRef<FavouritesType[]>([]);
+  const addToFavouritesReactions = useRef([]);
 
   const handleNextImage = (value: number) => {
-    if (value === Reaction.DISLIKE) {
+    if (value === VotingReaction.DISLIKE) {
       setShowModal(true);
       setModalMessage("successfully added to Dislikes");
     } else {
@@ -37,8 +39,8 @@ const VotingReaction = () => {
 
     setTimeout(() => {
       setIsClicked(false);
-      dispatch(getVotingImage.asyncThunk(null));
-      dispatch(setVotingReaction.asyncThunk({ image_id: imageId, value, sub_id: userId }));
+      dispatch(getImage.asyncThunk(null));
+      dispatch(setReaction.asyncThunk({ image_id: imageId, value, sub_id: user?.uid }));
     }, 1200);
   };
 
@@ -57,7 +59,7 @@ const VotingReaction = () => {
   useEffect(() => {
     return () => {
       for (const reaction of addToFavouritesReactions.current) {
-        dispatch(setFavouriteReaction.asyncThunk({ image_id: reaction.image_id, sub_id: userId }));
+        dispatch(setFavourite.asyncThunk({ image_id: reaction.image_id, sub_id: userId }));
       }
     };
   }, []);
